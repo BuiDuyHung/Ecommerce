@@ -17,29 +17,50 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Admin
-Route::prefix('admin')->group(function(){
+Route::prefix('admin')->name('admin.')->group(function(){
     Route::get('/', [AdminController::class, 'index'])->name('index');
 
     // category
     Route::get('/category', [CategoryController::class, 'index'])->name('indexCategory');
     Route::get('/create-category', [CategoryController::class, 'create'])->name('createCategory');
     Route::post('/store-category', [CategoryController::class, 'store'])->name('storeCategory');
-    Route::get('/edit-category', [CategoryController::class, 'edit'])->name('editCategory');
-    Route::post('/update-category', [CategoryController::class, 'update'])->name('updateCategory');
+    Route::get('/edit-category/{id}', [CategoryController::class, 'edit'])->name('editCategory');
+    Route::post('/update-category/{id}', [CategoryController::class, 'update'])->name('updateCategory');
+    Route::get('/destroy-category/{id}', [CategoryController::class, 'destroy'])->name('destroyCategory');
+
+    Route::get('active-category/{id}', [CategoryController::class, 'active'])->name('activeCategory');
+    Route::get('hidden-category/{id}', [CategoryController::class, 'hidden'])->name('hiddenCategory');
 
     // brand
     Route::get('/brand', [BrandController::class, 'index'])->name('indexBrand');
+    Route::get('/create-brand', [BrandController::class, 'create'])->name('createBrand');
+    Route::post('/store-brand', [BrandController::class, 'store'])->name('storeBrand');
+    Route::get('/edit-brand/{id}', [BrandController::class, 'edit'])->name('editBrand');
+    Route::post('/update-brand/{id}', [BrandController::class, 'update'])->name('updateBrand');
+    Route::get('/destroy-brand/{id}', [BrandController::class, 'destroy'])->name('destroyBrand');
+
+    Route::get('active-brand/{id}', [BrandController::class, 'active'])->name('activeBrand');
+    Route::get('hidden-brand/{id}', [BrandController::class, 'hidden'])->name('hiddenBrand');
 
     // product
     Route::get('/product', [ProductController::class, 'index'])->name('indexProduct');
+    Route::get('/create-product', [ProductController::class, 'create'])->name('createProduct');
+    Route::post('/store-product', [ProductController::class, 'store'])->name('storeProduct');
+    Route::get('/edit-product/{id}', [ProductController::class, 'edit'])->name('editProduct');
+    Route::post('/update-product/{id}', [ProductController::class, 'update'])->name('updateProduct');
+    Route::get('/destroy-product/{id}', [ProductController::class, 'destroy'])->name('destroyProduct');
+
+    Route::get('active-product/{id}', [ProductController::class, 'active'])->name('activeProduct');
+    Route::get('hidden-product/{id}', [ProductController::class, 'hidden'])->name('hiddenProduct');
 
 });

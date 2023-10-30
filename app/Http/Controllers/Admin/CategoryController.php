@@ -43,7 +43,7 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(string $id)
     {
         //
     }
@@ -51,7 +51,7 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(string $id)
     {
         $category = Category::find($id);
         return view('admin.category.edit', compact('category'));
@@ -60,7 +60,7 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,string $id)
     {
         $category = Category::find($id);
         $category->title = $request->category_product_title;
@@ -73,7 +73,7 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(string $id)
     {
         $category = Category::find($id);
         $category->delete();
@@ -84,7 +84,7 @@ class CategoryController extends Controller
     /**
      * Unactive category product.
      */
-    public function hidden($id){
+    public function hidden(string $id){
         Category::where('id', $id)->update(['status' => '0']);
 
         return redirect()->route('admin.indexCategory')->with('msg', 'Ẩn danh mục sản phẩm thành công !');
@@ -93,7 +93,7 @@ class CategoryController extends Controller
     /**
      * Active category product.
      */
-    public function active($id){
+    public function active(string $id){
         Category::where('id', $id)->update(['status' => '1']);
 
         return redirect()->route('admin.indexCategory')->with('msg', 'Kích hoạt danh mục sản phẩm thành công !');

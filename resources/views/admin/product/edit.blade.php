@@ -18,7 +18,7 @@
                         <div class="form-group">
                             <label>Hình ảnh sản phẩm</label>
                             <input type="file" name="product_image" class="form-control" id="productImage" >
-                            <img src="{{ asset('public/uploads/product/'.$product->image) }}" width="100px">
+                            <img src="{{ asset('uploads/'.$product->image) }}" width="100px">
                         </div>
                         <div class="form-group">
                             <label>Mô tả danh mục</label>

@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Brand;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
-        return view('home');
+        $categories = Category::where('status', '1')->get();
+        $brands = Brand::where('status', '1')->get();
+
+        return view('pages.main', compact('categories', 'brands'));
     }
 }

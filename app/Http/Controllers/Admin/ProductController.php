@@ -7,6 +7,8 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Brand;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
@@ -45,7 +47,7 @@ class ProductController extends Controller
         $product->category_id = $request->category_id;
         $product->brand_id = $request->brand_id;
 
-        $get_image = $request->file('product_image');
+        /*$get_image = $request->file('product_image');
 
         if ($get_image){
             $get_name_image = $get_image->getClientOriginalName();
@@ -53,6 +55,13 @@ class ProductController extends Controller
             $new_image = $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
             $get_image->move('public/uploads/product', $new_image);
             $product->image = $new_image;
+        }*/
+        if($request->product_image){
+            $image = $request->product_image;
+            $ext = $image->getClientOriginalExtension();
+            $name = time().'_'.$image->getClientOriginalName();
+            Storage::disk('public')->put($name, File::get($image));
+            $product->image = $name;
         }
 
         $product->save();
@@ -95,7 +104,7 @@ class ProductController extends Controller
         $product->category_id = $request->category_id;
         $product->brand_id = $request->brand_id;
 
-        $get_image = $request->file('product_image');
+        /*$get_image = $request->file('product_image');
 
         if ($get_image){
             $get_name_image = $get_image->getClientOriginalName();
@@ -104,6 +113,14 @@ class ProductController extends Controller
             $get_image->move('public/uploads/product', $new_image);
             $product->image = $new_image;
             $product->save();
+        }*/
+        if ($request->hasFile('product_image')) {
+            $image = $request->file('product_image');
+            $name = time() . '_' . $image->getClientOriginalName();
+            Storage::disk('public')->put($name, File::get($image));
+            $product->image = $name;
+        } else {
+            $name = $product->image;
         }
 
         $product->save();
@@ -117,9 +134,7 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         if ($product->image) {
-            if (file_exists('public/uploads/product/' . $product->image)) {
-                unlink('public/uploads/product/' . $product->image);
-            }
+            unlink('uploads/'.$product->image);
         }
         $product->delete();
 

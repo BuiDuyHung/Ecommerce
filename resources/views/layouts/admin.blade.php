@@ -45,7 +45,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!--  notification start -->
     <ul class="nav top-menu">
         <li>
-            <a href="">
+            <a href="{{ route('home.index') }}">
                 <i class="fa fa-house"></i>
             </a>
         </li>

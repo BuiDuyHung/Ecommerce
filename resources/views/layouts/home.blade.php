@@ -117,7 +117,7 @@
 						</div>
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="index.html" class="active">Trang chủ</a></li>
+								<li><a href="{{ route('home.index') }}" class="active">Trang chủ</a></li>
 								<li class="dropdown"><a href="#">Sản phẩm<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="shop.html">Products</a></li>
@@ -218,7 +218,7 @@
                             @foreach ($categories as $item)
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <h4 class="panel-title"><a href="#"> {{ $item->title }} </a></h4>
+                                        <h4 class="panel-title"><a href="{{ route('home.showCategory', $item->id) }}"> {{ $item->title }} </a></h4>
                                     </div>
                                 </div>
                             @endforeach
@@ -230,7 +230,7 @@
                             @foreach ($brands as $item)
                                 <div class="brands-name">
                                     <ul class="nav nav-pills nav-stacked">
-                                        <li><a href="#"> <span class="pull-right">(50)</span> {{ $item->title }} </a></li>
+                                        <li><a href="{{ route('home.showBrand', $item->id) }}"> <span class="pull-right">(50)</span> {{ $item->title }} </a></li>
                                     </ul>
                                 </div>
                             @endforeach

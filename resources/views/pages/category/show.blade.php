@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="features_items"><!--features_items-->
-    <h2 class="title text-center">Sản phẩm mới nhất</h2>
-    @foreach ($products as $item)
+    <h2 class="title text-center">{{ $category_by_id->title }}</h2>
+    @foreach ($product_by_category as $item)
         <div class="col-sm-4">
             <div class="product-image-wrapper">
                 <div class="single-products">
@@ -15,13 +15,6 @@
                             <p> {{ $item->title }} </p>
                             <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm giỏ hàng</a>
                         </div>
-                        {{-- <div class="product-overlay">
-                            <div class="overlay-content">
-                                <h2>{{ number_format($item->price) }} VNĐ</h2>
-                                <p>{{ $item->title }}</p>
-                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                            </div>
-                        </div> --}}
                 </div>
                 <div class="choose">
                     <ul class="nav nav-pills nav-justified">
@@ -37,5 +30,3 @@
 
 
 @endsection
-
-

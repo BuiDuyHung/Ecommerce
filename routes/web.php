@@ -22,10 +22,13 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes();
 
 // Home page
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::prefix('/')->name('home.')->group(function(){
+    Route::get('/', [HomeController::class, 'index'])->name('index');
+    Route::get('/danh-muc-san-pham/{id}', [HomeController::class, 'showCategory'])->name('showCategory');
+    Route::get('/thuong-hieu-san-pham/{id}', [HomeController::class, 'showBrand'])->name('showBrand');
+    Route::get('/chi-tiet-san-pham/{id}', [HomeController::class, 'detailProduct'])->name('detailProduct');
+});
 
-
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Admin
 Route::prefix('admin')->name('admin.')->group(function(){

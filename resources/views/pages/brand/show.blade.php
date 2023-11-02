@@ -8,7 +8,7 @@
             <div class="product-image-wrapper">
                 <div class="single-products">
                         <div class="productinfo text-center">
-                            <a href="{{ route('home.detailProduct') }}">
+                            <a href="{{ route('home.detailProduct', $item->id) }}">
                                 <img src="{{ asset('uploads/'.$item->image)}}" alt="" />
                             </a>
                             <h2> {{ number_format($item->price) }} VNĐ</h2>

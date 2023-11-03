@@ -48,12 +48,12 @@
             <h2> {{ $item->title }} </h2>
             <p>ID: {{ $item->id }} </p>
             <img src="{{ asset('frontend/images/product-details/rating.png') }}" alt="" />
-
+            <h1>{{ number_format($item->price) }} VNĐ</h1>
             {{-- Gửi thông tin số lượng sản phẩm đến giỏ hàng --}}
             <form action="{{ route('home.showCart') }}" method="POST">
                 @csrf
                 <span>
-                    <span>{{ number_format($item->price) }} VNĐ</span>
+
                     <label>Quantity:</label>
                     <input name="quantity" type="number" min="1" value="1" />
                     <input name="productId_hidden" type="hidden" value="{{ $item->id }}" />

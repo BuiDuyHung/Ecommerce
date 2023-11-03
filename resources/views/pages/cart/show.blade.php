@@ -40,9 +40,16 @@
                             </td>
                             <td class="cart_quantity">
                                 <div class="cart_quantity_button">
-                                    <a class="cart_quantity_up" href=""> + </a>
-                                    <input class="cart_quantity_input" type="text" name="quantity" value="{{ $item->qty }}" autocomplete="off" size="2">
-                                    <a class="cart_quantity_down" href=""> - </a>
+                                    <form action="{{ route('home.updateQty') }}" method="POST">
+                                        @csrf
+                                        <div class="quantity-controls">
+                                            <input type="submit" value="-" name="update_qty" class="btn btn-default btn-sm quantity-button">
+                                            <input class="cart_quantity_input" type="text" name="quantity_cart" value="{{ $item->qty }}" autocomplete="off" size="2">
+                                            <input type="submit" value="+" name="update_qty" class="btn btn-default btn-sm quantity-button">
+
+                                            <input type="hidden" value="{{ $item->rowId }}" name="rowId_cart" class="btn btn-default btn-sm">
+                                        </div>
+                                    </form>
                                 </div>
                             </td>
                             <td class="cart_total">
@@ -54,7 +61,7 @@
                                 </p>
                             </td>
                             <td class="cart_delete">
-                                <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+                                <a class="cart_quantity_delete" href="{{ route('home.deleteCart', $item->rowId) }}"><i class="fa fa-times"></i></a>
                             </td>
                         </tr>
                     @endforeach
@@ -129,10 +136,10 @@
             <div class="col-sm-6">
                 <div class="total_area">
                     <ul>
-                        <li>Tổng <span>{{ Cart::total(); }} VNĐ</span></li>
+                        <li>Tổng <span>{{ Cart::subtotal(); }} VNĐ</span></li>
                         <li>Thuế <span>{{ Cart::tax(); }} VNĐ</span></li>
                         <li>Phí vận chuyển <span>Free</span></li>
-                        <li>Thành tiền <span>{{ Cart::subtotal(); }} VNĐ</span></li>
+                        <li>Thành tiền <span>{{ Cart::total(); }} VNĐ</span></li>
                     </ul>
                         <a class="btn btn-default update" href="">Update</a>
                         <a class="btn btn-default check_out" href="">Check Out</a>

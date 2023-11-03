@@ -40,4 +40,27 @@ class CartController extends Controller
 
         return redirect()->route('home.showCart');
     }
+
+    public function delete(string $id){
+        // xóa sản phẩm có rowId
+        Cart::update($id,0);
+
+        return redirect()->route('home.showCart');
+    }
+
+    public function updateQty(Request $request){
+        $rowId = $request->rowId_cart;
+        $item = Cart::get($rowId);
+
+        if ($request->input('update_qty') === '+') {
+            $qty = $item->qty + 1;
+
+        } elseif ($request->input('update_qty') === '-') {
+            $qty = $item->qty - 1;
+        }
+
+        Cart::update($rowId, $qty);
+
+        return redirect()->route('home.showCart');
+    }
 }

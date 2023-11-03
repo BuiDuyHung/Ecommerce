@@ -32,6 +32,8 @@ Route::prefix('/')->name('home.')->group(function(){
     // Cart
     Route::get('/them-gio-hang', [CartController::class, 'show'])->name('showCart');
     Route::post('/them-gio-hang', [CartController::class, 'save'])->name('saveCart');
+    Route::post('/cap-nhat-so-luong-san-pham', [CartController::class, 'updateQty'])->name('updateQty');
+    Route::get('/xoa-gio-hang/{id}', [CartController::class, 'delete'])->name('deleteCart');
 });
 
 

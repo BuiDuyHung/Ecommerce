@@ -1173,10 +1173,12 @@ h2.title {
 
 .view-product {
   position: relative;
+  height: 350px;
+  border: 1px solid #F7F7F0;
 }
 
 .view-product img {
-  border: 1px solid #F7F7F0;
+  /* border: 1px solid #F7F7F0; */
   /* height: 380px; */
   height: auto;
   width: 100%;
@@ -1705,6 +1707,7 @@ h2.title {
   color: #696763;
   padding: 30px 25px 30px 0;
   margin-bottom: 80px;
+  height: 290px;
 }
 
 .total_area span {

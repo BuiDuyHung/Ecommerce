@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,6 +35,12 @@ Route::prefix('/')->name('home.')->group(function(){
     Route::post('/them-gio-hang', [CartController::class, 'save'])->name('saveCart');
     Route::post('/cap-nhat-so-luong-san-pham', [CartController::class, 'updateQty'])->name('updateQty');
     Route::get('/xoa-gio-hang/{id}', [CartController::class, 'delete'])->name('deleteCart');
+
+    // Bill
+    Route::get('/thanh-toan', [BillController::class, 'checkout'])->name('checkout');
+
+    // User
+    Route::get('/trang-ca-nhan', [UserController::class, 'show'])->name('userShow');
 });
 
 

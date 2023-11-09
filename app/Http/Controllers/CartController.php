@@ -37,6 +37,7 @@ class CartController extends Controller
         $data['options']['image'] = $product->image;
 
         Cart::add($data);
+        // set thuế cho sản phẩm
 
         return redirect()->route('home.showCart');
     }
@@ -52,6 +53,7 @@ class CartController extends Controller
         $rowId = $request->rowId_cart;
         $item = Cart::get($rowId);
 
+        // cập nhật lại số lượng sản phẩm trong giỏ hàng
         if ($request->input('update_qty') === '+') {
             $qty = $item->qty + 1;
 

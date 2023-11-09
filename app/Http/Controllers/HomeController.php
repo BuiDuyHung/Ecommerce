@@ -20,7 +20,7 @@ class HomeController extends Controller
         $brands = Brand::where('status', '1')->get();
 
         // lấy 10 sản phẩm phẩm mới nhất
-        $products = Product::where('status', '1')->orderby('id', 'desc')->limit(10)->get();
+        $products = Product::where('status', '1')->orderby('id', 'desc')->limit(9)->get();
 
         return view('pages.main', compact('categories', 'brands', 'products'));
     }
@@ -52,7 +52,7 @@ class HomeController extends Controller
     }
 
     // Hiển thị cho tiết sản phẩm
-    public function detailProduct($id){
+    public function detailProduct(string $id){
         $categories = Category::where('status', '1')->get();
         $brands = Brand::where('status', '1')->get();
 

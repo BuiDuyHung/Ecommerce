@@ -15,7 +15,6 @@ class HomeController extends Controller
     {
         // lấy tất cả các thể loại sản phẩm
         $categories = Category::where('status', '1')->get();
-
         // lấy tất cả các thương hiệu sản phẩm
         $brands = Brand::where('status', '1')->get();
 

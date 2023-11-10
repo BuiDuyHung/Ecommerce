@@ -125,7 +125,7 @@
                                         <li>Thành tiền :<span>{{ number_format(Cart::total()) }} VNĐ</span></li>
                                     </ul>
 
-                                    <a class="btn btn-default check_out" style="float: right;" href="{{ route('home.checkout') }}">Thanh Toán</a>
+                                    <a class="btn btn-default check_out" style="float: right;" href="{{ route('home.loginCheckout') }}">Thanh Toán</a>
                                 </div>
                             </div>
                         </div>

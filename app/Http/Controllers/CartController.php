@@ -35,9 +35,7 @@ class CartController extends Controller
         $data['price'] = $product->price;
         $data['weight'] = '28';
         $data['options']['image'] = $product->image;
-
         Cart::add($data);
-        // set thuế cho sản phẩm
 
         return redirect()->route('home.showCart');
     }

@@ -33,9 +33,24 @@
 					<div class="col-sm-9">
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
-								<li><a href="{{ route('home.userShow') }}"><i class="fa fa-user"></i> Tài khoản </a></li>
+								<li><a href="{{ route('home.loginCheckout') }}"><i class="fa fa-user"></i> Tài khoản </a></li>
+                                <li><a href="#"><i class="fa fa-star"></i> Yêu thích</a></li>
+								<li><a href="#"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
 								<li><a href="{{ route('home.showCart') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng </a></li>
-								<li><a href="{{ route('login') }}"><i class="fa fa-lock"></i> Đăng nhập </a></li>
+
+                                <?php
+                                    $customer_id = Session::get('customer_id');
+                                    if ($customer_id != NULL){
+                                ?>
+                                    <li><a href="{{ route('home.loginCheckout') }}"><i class="fa fa-lock"></i> Đăng xuất </a></li>
+                                <?php
+                                    }else {
+                                ?>
+                                    <li><a href="{{ route('home.loginCheckout') }}"><i class="fa fa-lock"></i> Đăng nhập </a></li>
+                                <?php
+                                    }
+                                ?>
+
 							</ul>
 						</div>
 					</div>
@@ -64,9 +79,7 @@
 
                                     </ul>
                                 </li>
-								<li class="dropdown"><a href="#">Tin tức<i class="fa fa-angle-down"></i></a>
-
-                                </li>
+								<li class="dropdown"><a href="#">Tin tức<i class="fa fa-angle-down"></i></a></li>
 								<li><a href="{{ route('home.showCart') }}">Giỏ hàng</a></li>
 								<li><a href="contact-us.html">Liên hệ</a></li>
 							</ul>

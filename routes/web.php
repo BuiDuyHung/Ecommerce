@@ -4,7 +4,9 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\BillController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -37,10 +39,15 @@ Route::prefix('/')->name('home.')->group(function(){
     Route::get('/xoa-gio-hang/{id}', [CartController::class, 'delete'])->name('deleteCart');
 
     // Bill
-    Route::get('/thanh-toan', [BillController::class, 'checkout'])->name('checkout');
+    Route::get('/thu-tuc-thanh-toan', [BillController::class, 'checkout'])->name('checkout');
+    Route::get('/them-thong-ti-thanh-toan', [BillController::class, 'addCheckout'])->name('addCheckout');
 
     // User
     Route::get('/trang-ca-nhan', [UserController::class, 'show'])->name('userShow');
+
+    // Login checkout
+    Route::get('/kiem-tra-thanh-toan', [CheckoutController::class, 'login_checkout'])->name('loginCheckout');
+    Route::post('/them-nguoi-dung', [CheckoutController::class, 'addCustomer'])->name('addCustomer');
 });
 
 

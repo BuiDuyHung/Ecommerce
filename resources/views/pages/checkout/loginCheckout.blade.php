@@ -7,7 +7,8 @@
             <div class="col-sm-4 col-sm-offset-1">
                 <div class="login-form"><!--login form-->
                     <h2>Đăng nhập tài khoản</h2>
-                    <form action="#">
+                    <form action="{{ route('home.loginCustomer') }}" method="POST">
+                        @csrf
                         <input type="text" name="email_account" placeholder="Email" />
                         <input type="password" name="password_account" placeholder="Mật khẩu" />
                         <span>

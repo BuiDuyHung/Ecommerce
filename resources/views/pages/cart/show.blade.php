@@ -125,7 +125,19 @@
                                         <li>Thành tiền :<span>{{ number_format(Cart::total()) }} VNĐ</span></li>
                                     </ul>
 
-                                    <a class="btn btn-default check_out" style="float: right;" href="{{ route('home.loginCheckout') }}">Thanh Toán</a>
+
+                                    <?php
+                                        $customer_id = Session::get('customer_id');
+                                        if ($customer_id != NULL){
+                                    ?>
+                                        <a class="btn btn-default check_out" style="float: right;" href="{{ route('home.checkout') }}">Thanh Toán</a>
+                                    <?php
+                                        }else {
+                                    ?>
+                                        <a class="btn btn-default check_out" style="float: right;" href="{{ route('home.loginCheckout') }}">Thanh Toán</a>
+                                    <?php
+                                        }
+                                    ?>
                                 </div>
                             </div>
                         </div>

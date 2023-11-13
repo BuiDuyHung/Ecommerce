@@ -8,6 +8,7 @@ use App\Http\Controllers\BillController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -45,9 +46,14 @@ Route::prefix('/')->name('home.')->group(function(){
     // User
     Route::get('/trang-ca-nhan', [UserController::class, 'show'])->name('userShow');
 
-    // Login checkout
-    Route::get('/kiem-tra-thanh-toan', [CheckoutController::class, 'login_checkout'])->name('loginCheckout');
+    // Checkout
+    Route::get('/dang-nhap-thanh-toan', [CheckoutController::class, 'login_checkout'])->name('loginCheckout');
+    Route::get('/thoat-dang-nhap-thanh-toan', [CheckoutController::class, 'logout_checkout'])->name('logoutCheckout');
     Route::post('/them-nguoi-dung', [CheckoutController::class, 'addCustomer'])->name('addCustomer');
+    Route::post('/dang-nhap-nguoi-dung', [CheckoutController::class, 'login_customer'])->name('loginCustomer');
+
+    // Search
+    Route::post('/tim-kiem', [SearchController::class, 'search'])->name('search');
 });
 
 

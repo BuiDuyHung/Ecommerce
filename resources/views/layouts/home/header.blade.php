@@ -33,16 +33,30 @@
 					<div class="col-sm-9">
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
-								<li><a href="{{ route('home.loginCheckout') }}"><i class="fa fa-user"></i> Tài khoản </a></li>
+								{{-- <li><a href="{{ route('home.loginCheckout') }}"><i class="fa fa-user"></i> Tài khoản </a></li> --}}
                                 <li><a href="#"><i class="fa fa-star"></i> Yêu thích</a></li>
-								<li><a href="#"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
+
+                                <?php
+                                    $customer_id = Session::get('customer_id');
+                                    if ($customer_id != NULL){
+                                ?>
+                                    <li><a href="{{ route('home.checkout') }}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
+                                <?php
+                                    }else {
+                                ?>
+                                    <li><a href="{{ route('home.loginCheckout') }}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
+                                <?php
+                                    }
+                                ?>
+
+
 								<li><a href="{{ route('home.showCart') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng </a></li>
 
                                 <?php
                                     $customer_id = Session::get('customer_id');
                                     if ($customer_id != NULL){
                                 ?>
-                                    <li><a href="{{ route('home.loginCheckout') }}"><i class="fa fa-lock"></i> Đăng xuất </a></li>
+                                    <li><a href="{{ route('home.logoutCheckout') }}"><i class="fa fa-lock"></i> Đăng xuất </a></li>
                                 <?php
                                     }else {
                                 ?>
@@ -86,9 +100,13 @@
 						</div>
 					</div>
 					<div class="col-sm-3">
-						<div class="search_box pull-right">
-							<input type="text" placeholder="Tìm kiếm"/>
-						</div>
+                        <form action="{{ route('home.search') }}" method="POST">
+                            @csrf
+                            <div class="search_box pull-right">
+                                <input type="text" name="keywords" value="{{ old('keywords') }}" placeholder=""/>
+                                <button type="submit" class="btn btn-fix">Tìm kiếm</button>
+                            </div>
+                        </form>
 					</div>
 				</div>
 			</div>

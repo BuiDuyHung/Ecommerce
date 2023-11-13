@@ -8,6 +8,7 @@ use App\Http\Controllers\BillController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -41,7 +42,8 @@ Route::prefix('/')->name('home.')->group(function(){
 
     // Bill
     Route::get('/thu-tuc-thanh-toan', [BillController::class, 'checkout'])->name('checkout');
-    Route::get('/them-thong-ti-thanh-toan', [BillController::class, 'addCheckout'])->name('addCheckout');
+    Route::post('/them-thong-tin-thanh-toan', [BillController::class, 'addCheckout'])->name('addCheckout');
+    Route::get('/thanh-toan', [BillController::class, 'payment'])->name('payment');
 
     // User
     Route::get('/trang-ca-nhan', [UserController::class, 'show'])->name('userShow');
@@ -54,6 +56,9 @@ Route::prefix('/')->name('home.')->group(function(){
 
     // Search
     Route::post('/tim-kiem', [SearchController::class, 'search'])->name('search');
+
+    // Order
+    Route::post('/dat-hang', [OrderController::class, 'order_place'])->name('orderPlace');
 });
 
 

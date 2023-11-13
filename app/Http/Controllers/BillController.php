@@ -23,6 +23,11 @@ class BillController extends Controller
 
         Session::put('shipping_id', $customer_id);
 
-        return;
+        return redirect()->route('home.payment');
     }
+
+    public function payment(){
+        return view('pages.checkout.payment');
+    }
+
 }

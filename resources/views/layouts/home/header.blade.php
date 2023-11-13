@@ -38,9 +38,10 @@
 
                                 <?php
                                     $customer_id = Session::get('customer_id');
-                                    if ($customer_id != NULL){
+                                    $shipping_id = Session::get('shipping_id');
+                                    if ($customer_id != NULL && $shipping_id != NULL){
                                 ?>
-                                    <li><a href="{{ route('home.checkout') }}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
+                                    <li><a href="{{ route('home.payment') }}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
                                 <?php
                                     }else {
                                 ?>

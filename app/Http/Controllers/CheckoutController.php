@@ -38,10 +38,6 @@ class CheckoutController extends Controller
 
     }
 
-    public function payment(){
-
-    }
-
     // Đăng xuất người dùng
     public function logout_checkout(){
         Session::flush();

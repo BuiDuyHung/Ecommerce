@@ -7,15 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Order;
 
-class Payment extends Model
+class Shipping extends Model
 {
     use HasFactory;
 
-    public $table = 'tbl_payment';
+    public $table = 'tbl_shipping';
 
     protected $fillable = [
-        'method',
-        'status',
+        'name',
+        'address',
+        'phone',
+        'email',
+        'notes'
     ];
 
     public function orders()

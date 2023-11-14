@@ -7,19 +7,22 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Order;
 
-class Payment extends Model
+class Customer extends Model
 {
     use HasFactory;
 
-    public $table = 'tbl_payment';
+    public $table = 'tbl_customers';
 
     protected $fillable = [
-        'method',
-        'status',
+        'name',
+        'email',
+        'password',
+        'phone'
     ];
 
     public function orders()
     {
         return $this->hasMany(Order::class);
     }
+
 }

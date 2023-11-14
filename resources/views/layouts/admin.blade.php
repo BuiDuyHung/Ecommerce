@@ -311,10 +311,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa-brands fa-first-order-alt"></i>
-                        <span>Quản lý đơn đặt hàng</span>
+                        <span>Đơn hàng</span>
                     </a>
                     <ul class="sub">
-						<li><a href="{{ route('admin.indexOrder') }}">Danh sách đơn đặt hàng</a></li>
+						<li><a href="{{ route('admin.indexOrder') }}">Quản lý đơn hàng</a></li>
                     </ul>
                 </li>
 

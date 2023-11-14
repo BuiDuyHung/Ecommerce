@@ -10,12 +10,8 @@
             </ol>
         </div><!--/breadcrums-->
 
-
-        {{-- <div class="review-payment">
-            <h2>Xem lại giỏ hàng</h2>
-        </div> --}}
+        {{-- Xem lại nhỏ hàng --}}
         <h3 class="fix-title">Xem lại giỏ hàng</h3>
-
         <div class="container">
             <div class="row">
 
@@ -84,9 +80,6 @@
 
         <section id="do_action">
             <div class="container">
-                <div class="heading">
-
-                </div>
                 <div class="row">
                     <div class="col-sm-12 fix-bill">
 
@@ -104,23 +97,21 @@
             </div>
         </section><!--/#do_action-->
 
-        {{-- <div class="review-payment">
-            <h1>Chọn hình thức thanh toán</h1>
-        </div> --}}
-        <h2>Chọn hình thức thanh toán</h2>
 
+        {{-- Chọn hình thức thanh toán --}}
+        <h2>Chọn hình thức thanh toán</h2>
         <form action="{{ route('home.orderPlace') }}" method="POST">
             @csrf
             <div class="bill-fix">
                 <span>
-                    <label><input name="payment_option" value="1" type="checkbox"> Trả bằng thẻ ATM</label>
+                    <label><input name="payment_option" value="1" type="checkbox"> Thẻ ATM</label>
                 </span>
                 <span>
-                    <label><input name="payment_option" value="2" type="checkbox"> Nhận tiền mặt</label>
+                    <label><input name="payment_option" value="2" type="checkbox"> Tiền mặt</label>
                 </span>
-                {{-- <span>
-                    <label><input type="checkbox"> Paypal</label>
-                </span> --}}
+                <span>
+                    <label><input name="payment_option" value="3" type="checkbox"> Thẻ ghi nợ</label>
+                </span>
             </div>
             <input type="submit" value="Đặt hàng" name="send_order_place" class="btn btn-fix fix-css">
 

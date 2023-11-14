@@ -62,10 +62,15 @@
 
                     <div class="panel-group category-products" id="accordian"><!--category-productsr-->
                         @foreach ($categories as $item)
-                            <div class="panel panel-default">
+                            {{-- <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h4 class="panel-title"><a href="{{ route('home.showCategory', $item->id) }}"> {{ $item->title }} </a></h4>
                                 </div>
+                            </div> --}}
+                            <div class="brands-name">
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="{{ route('home.showCategory', $item->id) }}"> <span class="pull-right"></span> {{ $item->title }} </a></li>
+                                </ul>
                             </div>
                         @endforeach
                     </div><!--/category-products-->

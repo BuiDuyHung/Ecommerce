@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Brand;
+
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -41,7 +44,17 @@ class OrderController extends Controller
         if($paymentData['method'] == 1){
             echo 'Thanh toan the ATM';
         }else if($paymentData['method'] == 2){
-            echo 'Thanh toan tien mat';
+            // lấy tất cả các thể loại sản phẩm
+            $categories = Category::where('status', '1')->get();
+            // lấy tất cả các thương hiệu sản phẩm
+            $brands = Brand::where('status', '1')->get();
+
+            Cart::destroy();
+
+            return view('pages.checkout.handcash', compact('categories', 'brands'));
+
+        }else{
+            echo 'Thẻ ghi nợ';
         }
 
         return redirect()->route('home.payment');

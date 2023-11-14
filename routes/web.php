@@ -104,5 +104,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
     // Order
     Route::get('/order', [ManaOrderController::class, 'index'])->name('indexOrder');
+    Route::get('/view-order/{id}', [ManaOrderController::class, 'view'])->name('viewOrder');
+    Route::get('/destroy-order/{id}', [ManaOrderController::class, 'destroy'])->name('destroyOrder');
 
 });

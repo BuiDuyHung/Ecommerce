@@ -24,7 +24,7 @@ class OrderController extends Controller
         $orderData['customer_id'] = Session::get('customer_id');
         $orderData['shipping_id'] = Session::get('shipping_id');
         $orderData['payment_id'] = $payment_id;
-        $orderData['total'] = Cart::total();
+        $orderData['total'] = number_format(Cart::total());
         $orderData['status'] = 'Đang chờ xử lý';
         $order_id = DB::table('tbl_order')->insertGetId($orderData);
 

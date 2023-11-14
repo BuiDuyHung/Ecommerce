@@ -4,7 +4,67 @@
 <div class="table-agile-info">
     <div class="panel panel-default">
         <div class="panel-heading">
-            Danh sách đơn đặt hàng
+            Thông tin khách hàng
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped b-t b-light">
+                <thead>
+                    <tr>
+                        <th>Tên</th>
+                        <th>Số điện thoại</th>
+                        <th>Email</th>
+                        <th style="width:30px;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> {{ $customer->name }} </td>
+                        <td> {{ $customer->phone }} </td>
+                        <td> {{ $customer->email }} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<br>
+<div class="table-agile-info">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Thông tin vận chuyển
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped b-t b-light">
+                <thead>
+                    <tr>
+                        <th>Tên</th>
+                        <th>Địa chỉ</th>
+                        <th>Số điện thoại</th>
+                        <th>Email</th>
+                        <th>Ghi chú</th>
+                        <th style="width:30px;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <td> {{ $shipping->name }} </td>
+                    <td> {{ $shipping->address }} </td>
+                    <td> {{ $shipping->phone }} </td>
+                    <td> {{ $shipping->email }} </td>
+                    <td> {{ $shipping->notes }} </td>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<br><br>
+<div class="table-agile-info">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Chi tiết đơn đặt hàng
         </div>
         @if(session('msg'))
             <div class="alert alert-success text-center" id="notification">
@@ -42,31 +102,24 @@
                         <input type="checkbox"><i></i>
                         </label>
                     </th>
-                    <th>Tên người đặt</th>
-                    <th>Tổng giá tiền</th>
-                    <th>Tình trạng</th>
-                    <th>Hiển thị</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Số lượng</th>
+                    <th>Giá</th>
+                    <th>Tổng tiền</th>
                     <th style="width:30px;"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($orders as $item)
+                    @foreach ($order_detail as $item)
                         <tr>
                             <td>
                                 <label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label>
                             </td>
-                            <td> {{ $item->customer->name}} </td>
-                            <td> {{ number_format($item->total) }} </td>
-                            <td> {{ $item->status }} </td>
+                            <td> {{ $item->product_name }} </td>
+                            <td> {{ $item->product_sale_quantity }} </td>
+                            <td> {{ number_format($item->product_price) }} </td>
 
-                            <td>
-                                <a href="{{ route('admin.viewOrder', $item->id) }}" class="active styling-edit" ui-toggle-class="">
-                                    <i class="fa fa-pencil-square-o text-success text-active"></i>
-                                </a>
-                                <a onclick="return confirm('Bạn có chắc chắn muốn xóa đơn hàng này không?')" href="{{ route('admin.destroyOrder', $item->id) }}" class="active styling-edit" ui-toggle-class="">
-                                    <i class="fa fa-times text-danger text"></i>
-                                </a>
-                            </td>
+                            <td> {{ number_format($item->product_sale_quantity*$item->product_price) }} </td>
                         </tr>
                     @endforeach
 
@@ -92,4 +145,6 @@
       </footer>
     </div>
 </div>
+
 @endsection
+

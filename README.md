@@ -1,3 +1,10 @@
 ## About website
 Website thương mại điện tử
-- chuyên bán về các sản phẩm đồ điện tử: điện thoại, laptop, pc, ...
+--------------------------
+*Thông tin chi tiết cho từng sản phẩm*
+- Laptop
+- PC
+- Điện thoại
+- Phụ kiện
+
+

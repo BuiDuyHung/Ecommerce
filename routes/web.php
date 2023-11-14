@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\OrderAdController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\CartController;
@@ -99,5 +100,8 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
     Route::get('active-product/{id}', [ProductController::class, 'active'])->name('activeProduct');
     Route::get('hidden-product/{id}', [ProductController::class, 'hidden'])->name('hiddenProduct');
+
+    // Order
+    Route::get('/order', [OrderAdController::class, 'index'])->name('indexOrder');
 
 });

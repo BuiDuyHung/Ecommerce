@@ -308,6 +308,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </ul>
                 </li>
 
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa-brands fa-first-order-alt"></i>
+                        <span>Quản lý đơn đặt hàng</span>
+                    </a>
+                    <ul class="sub">
+						<li><a href="{{ route('admin.indexOrder') }}">Danh sách đơn đặt hàng</a></li>
+                    </ul>
+                </li>
+
             </ul>
         </div>
         <!-- sidebar menu end-->

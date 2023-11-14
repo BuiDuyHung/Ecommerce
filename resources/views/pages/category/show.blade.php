@@ -44,14 +44,19 @@
                         <div class="col-sm-4">
                             <div class="product-image-wrapper">
                                 <div class="single-products">
+                                    <form action="{{ route('home.showCart') }}" method="POST">
+                                        @csrf
                                         <div class="productinfo text-center">
                                             <a href="{{ route('home.detailProduct', $item->id) }}">
                                                 <img src="{{ asset('uploads/'.$item->image)}}" alt="" />
                                             </a>
                                             <h2> {{ number_format($item->price) }} VNĐ</h2>
                                             <p> {{ $item->title }} </p>
-                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm giỏ hàng</a>
+                                            <input name="quantity" type="hidden" min="1" value="1" />
+                                            <input name="productId_hidden" type="hidden" value="{{ $item->id }}" />
+                                            <button type="submit" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm giỏ hàng</button>
                                         </div>
+                                    </form>
                                 </div>
                                 <div class="choose">
                                     <ul class="nav nav-pills nav-justified">

@@ -90,7 +90,6 @@
                             <form action="{{ route('home.showCart') }}" method="POST">
                                 @csrf
                                 <span>
-
                                     <label>Quantity:</label>
                                     <input name="quantity" type="number" min="1" value="1" />
                                     <input name="productId_hidden" type="hidden" value="{{ $item->id }}" />

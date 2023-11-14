@@ -22,8 +22,8 @@
 
 <body>
 	<header id="header"><!--header-->
-		<div class="header-middle"><!--header-middle-->
-			<div class="container">
+		<div class="header-middle fix-header1"><!--header-middle-->
+			<div class="container-fluid">
 				<div class="row">
 					<div class="col-sm-3">
 						<div class="logo pull-left">
@@ -91,10 +91,9 @@
 								<li class="dropdown"><a href="#">Sản phẩm<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="shop.html">Apple</a></li>
-
                                     </ul>
                                 </li>
-								<li class="dropdown"><a href="#">Tin tức<i class="fa fa-angle-down"></i></a></li>
+								<li class="dropdown"><a href="#">Tin tức</a></li>
 								<li><a href="{{ route('home.showCart') }}">Giỏ hàng</a></li>
 								<li><a href="contact-us.html">Liên hệ</a></li>
 							</ul>

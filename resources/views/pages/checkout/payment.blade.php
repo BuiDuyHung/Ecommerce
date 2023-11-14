@@ -11,8 +11,15 @@
         </div><!--/breadcrums-->
 
 
-        <div class="review-payment">
+        {{-- <div class="review-payment">
             <h2>Xem lại giỏ hàng</h2>
+        </div> --}}
+        <h3 class="fix-title">Xem lại giỏ hàng</h3>
+
+        <div class="container">
+            <div class="row">
+
+            </div>
         </div>
         <div class="table-responsive cart_info">
             @php
@@ -75,13 +82,36 @@
             </table>
         </div>
 
-        <div class="review-payment">
-            <h2>Chọn hình thức thanh toán</h2>
-        </div>
+        <section id="do_action">
+            <div class="container">
+                <div class="heading">
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 fix-bill">
+
+                        <div class="total_area">
+                            <h2 class="fix-title-bill">Hóa đơn:</h2>
+                            <ul>
+                                <li>Tổng :<span>{{ number_format(Cart::subtotal()) }} VNĐ</span></li>
+                                <li>Thuế :<span>{{ number_format(Cart::tax()) }} VNĐ</span></li>
+                                <li>Phí vận chuyển :<span>Free</span></li>
+                                <li>Thành tiền :<span>{{ number_format(Cart::total()) }} VNĐ</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section><!--/#do_action-->
+
+        {{-- <div class="review-payment">
+            <h1>Chọn hình thức thanh toán</h1>
+        </div> --}}
+        <h2>Chọn hình thức thanh toán</h2>
 
         <form action="{{ route('home.orderPlace') }}" method="POST">
             @csrf
-            <div class="payment-options bill-fix">
+            <div class="bill-fix">
                 <span>
                     <label><input name="payment_option" value="1" type="checkbox"> Trả bằng thẻ ATM</label>
                 </span>
@@ -91,8 +121,8 @@
                 {{-- <span>
                     <label><input type="checkbox"> Paypal</label>
                 </span> --}}
-                <input type="submit" value="Đặt hàng" name="send_order_place" class="btn btn-fix">
             </div>
+            <input type="submit" value="Đặt hàng" name="send_order_place" class="btn btn-fix fix-css">
 
         </form>
 

@@ -283,6 +283,10 @@ a#scrollUp i{
     color: #ffffff;
 }
 
+.bill-fix span{
+    margin-left: 10px;
+}
+
 
 /*  Dropdown menu*/
 
@@ -1573,7 +1577,7 @@ h2.title {
   border-color:transparent transparent transparent #FE980F;
   position: absolute;
   top: 10px;
-  left:76px;
+  left:75px;
 
 }
 
@@ -2579,4 +2583,30 @@ h2.title {
 /* Phát sinh */
 .bill-fix{
     margin-top: 10px;
+}
+
+.fix-bill{
+    margin-bottom: -80px;
+    padding-left: 0;
+    padding-right: 28px;
+}
+
+.fix-title{
+    margin-top: -40px;
+    margin-bottom: 25px;
+}
+
+.fix-title-bill{
+    padding-left: 38px;
+}
+
+.fix-css{
+    width: 130px;
+    top: 10px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.fix-header1{
+    margin: 25px 40px 0px 80px;
 }

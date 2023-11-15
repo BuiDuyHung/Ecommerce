@@ -19,7 +19,14 @@ class SearchController extends Controller
         // lấy sản phẩm thông qua từ khóa tìm kiếm
         $product_by_search = DB::table('tbl_product')->where('title','like','%'.$keywords.'%')->get();
 
-        return view('pages.search.show', compact('categories', 'brands', 'product_by_search'));
+        // Seo
+        $meta_desc = "Chuyên cung cấp đồ điện tử công nghệ chính hãng, mang đến chải nhiệm tốt nhất đến tay người dùng";
+        $meta_keywords = "E shopper, laptop, PC, Điện thoại";
+        $meta_title = "E-Shopper";
+        $url_canonial = $request->url();
+
+
+        return view('pages.search.show', compact('categories', 'brands', 'product_by_search', 'meta_desc', 'meta_keywords', 'meta_title', 'url_canonial'));
     }
 
 }

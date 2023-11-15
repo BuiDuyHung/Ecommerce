@@ -7,8 +7,14 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 class BillController extends Controller
 {
-    public function checkout(){
-        return view('pages.checkout.show');
+    public function checkout(Request $request){
+        // Seo
+        $meta_desc = "Chuyên cung cấp đồ điện tử công nghệ chính hãng, mang đến chải nhiệm tốt nhất đến tay người dùng";
+        $meta_keywords = "E shopper, laptop, PC, Điện thoại";
+        $meta_title = "E-Shopper";
+        $url_canonial = $request->url();
+
+        return view('pages.checkout.show', compact('meta_desc', 'meta_keywords', 'meta_title', 'url_canonial'));
     }
 
     public function addCheckout(Request $request){

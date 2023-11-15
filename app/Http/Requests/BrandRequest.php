@@ -24,6 +24,7 @@ class BrandRequest extends FormRequest
         return [
             'brand_product_title' => 'required|min:3',
             'brand_product_desc' => 'required|min:6',
+            'brand_product_keywords' => 'required|min:3',
             'brand_product_status' => ['required', function($attribute, $value, $fail) {
                 if($value == '0'){
                     $fail('Vui lòng chọn trạng thái cho thương hiệu');
@@ -46,6 +47,7 @@ class BrandRequest extends FormRequest
             'brand_product_title' => 'Tên thương hiệu',
             'brand_product_desc' => 'Mô tả thương hiệu',
             'brand_product_status' => 'Trạng thái thương hiệu',
+            'brand_product_keywords' => 'Từ khóa thương hiệu',
         ];
     }
 }

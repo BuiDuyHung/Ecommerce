@@ -21,6 +21,15 @@
                             @enderror
                         </div>
                         <div class="form-group">
+                            <label>Từ khóa thương hiệu</label>
+                            <textarea style="resize: none;" rows="5" type="text" name="brand_product_keywords" class="form-control" id="brandProductDesc">{{ $brand->keywords }}</textarea>
+                            @error('brand_product_keywords')
+                                <div class="invalid-feedback fix-noti">
+                                    {{$message}} !
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
                             <label>Mô tả thương hiệu</label>
                             <textarea style="resize: none;" rows="5" type="text" name="brand_product_desc" class="form-control" id="brandProductDesc">{{ $brand->desc }}</textarea>
                             @error('brand_product_desc')

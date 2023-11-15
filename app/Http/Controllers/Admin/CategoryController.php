@@ -12,7 +12,7 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $categories = Category::all();
 
@@ -36,6 +36,7 @@ class CategoryController extends Controller
         $category->title = $request->category_product_title;
         $category->desc = $request->category_product_desc;
         $category->status = $request->category_product_status;
+        $category->keywords = $request->category_product_keywords;
         $category->save();
 
         return redirect()->route('admin.indexCategory')->with('msg', 'Thêm danh mục sản phẩm thành công !');
@@ -66,6 +67,7 @@ class CategoryController extends Controller
         $category = Category::find($id);
         $category->title = $request->category_product_title;
         $category->desc = $request->category_product_desc;
+        $category->keywords = $request->category_product_keywords;
         $category->save();
 
         return redirect()->route('admin.indexCategory')->with('msg', 'Cập nhật danh mục sản phẩm thành công !');

@@ -321,7 +321,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                 <li class="sub-menu">
                     <a href="javascript:;">
-                        <i class="fa-brands fa-first-order-alt"></i>
+                        <i class="fa-solid fa-user"></i>
                         <span>Tài khoản</span>
                     </a>
                     <ul class="sub">

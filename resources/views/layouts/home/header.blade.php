@@ -3,9 +3,18 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
+
+    {{-- SEO --}}
+    <meta name="description" content="{{ $meta_desc }}">
+    <meta name="keyword" content="{{ $meta_keywords }}">
+    <meta name="robots" content="INDEX,FOLLOW">
     <meta name="author" content="">
-    <title>Home | E-Shopper</title>
+
+    <link rel="canonical" href=" {{ $url_canonial }} ">
+    <link rel="icon" type="image/x-icon" href="">
+    {{-- End SEO --}}
+
+    <title> {{ $meta_title }} </title>
     <link href="{{ asset('frontend/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/css/font-awesome.min.css')}}" rel="stylesheet">
     <link href="{{ asset('frontend/css/prettyPhoto.css')}}" rel="stylesheet">
@@ -18,6 +27,7 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('frontend/images/ico/apple-touch-icon-114-precomposed.png')}}">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('frontend/images/ico/apple-touch-icon-72-precomposed.png')}}">
     <link rel="apple-touch-icon-precomposed" href="{{ asset('frontend/images/ico/apple-touch-icon-57-precomposed.png')}}">
+
 </head><!--/head-->
 
 <body>

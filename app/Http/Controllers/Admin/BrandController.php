@@ -36,6 +36,7 @@ class BrandController extends Controller
         $brand->title = $request->brand_product_title;
         $brand->desc = $request->brand_product_desc;
         $brand->status = $request->brand_product_status;
+        $brand->keywords = $request->brand_product_keywords;
         $brand->save();
 
         return redirect()->route('admin.indexBrand')->with('msg', 'Thêm thương hiệu sản phẩm thành công !');
@@ -66,6 +67,7 @@ class BrandController extends Controller
         $brand = Brand::find($id);
         $brand->title = $request->brand_product_title;
         $brand->desc = $request->brand_product_desc;
+        $brand->keywords = $request->brand_product_keywords;
         $brand->save();
 
         return redirect()->route('admin.indexBrand')->with('msg', 'Cập nhật thương hiệu sản phẩm thành công !');

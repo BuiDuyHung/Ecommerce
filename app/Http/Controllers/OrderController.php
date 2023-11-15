@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Session;
 class OrderController extends Controller
 {
     public function order_place(Request $request){
+
         // Insert payment
         $paymentData = array();
         $paymentData['method'] = $request->payment_option;
@@ -56,6 +57,7 @@ class OrderController extends Controller
         }else{
             echo 'Thẻ ghi nợ';
         }
+
 
         return redirect()->route('home.payment');
 

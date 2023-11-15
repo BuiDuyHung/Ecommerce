@@ -21,6 +21,15 @@
                             @enderror
                         </div>
                         <div class="form-group">
+                            <label>Từ khóa danh mục</label>
+                            <textarea style="resize: none;" rows="2" type="text" name="category_product_keywords" class="form-control" id="categoryDescription">{{ $category->keywords }}</textarea>
+                            @error('category_product_keywords')
+                                <div class="invalid-feedback fix-noti">
+                                    {{$message}} !
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
                             <label>Mô tả danh mục</label>
                             <textarea style="resize: none;" rows="5" type="text" name="category_product_desc" class="form-control" id="categoryDescription">{{ $category->desc }}</textarea>
                             @error('category_product_desc')

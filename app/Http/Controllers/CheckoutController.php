@@ -12,13 +12,19 @@ use Illuminate\Support\Facades\Hash;
 
 class CheckoutController extends Controller
 {
-    public function login_checkout(){
-         // lấy tất cả các thể loại sản phẩm
-         $categories = Category::where('status', '1')->get();
-         // lấy tất cả các thương hiệu sản phẩm
-         $brands = Brand::where('status', '1')->get();
+    public function login_checkout(Request $request){
+        // lấy tất cả các thể loại sản phẩm
+        $categories = Category::where('status', '1')->get();
+        // lấy tất cả các thương hiệu sản phẩm
+        $brands = Brand::where('status', '1')->get();
 
-        return view('pages.checkout.loginCheckout', compact('categories', 'brands'));
+        // Seo
+        $meta_desc = "Chuyên cung cấp đồ điện tử công nghệ chính hãng, mang đến chải nhiệm tốt nhất đến tay người dùng";
+        $meta_keywords = "E shopper, laptop, PC, Điện thoại";
+        $meta_title = "E-Shopper";
+        $url_canonial = $request->url();
+
+        return view('pages.checkout.loginCheckout', compact('categories', 'brands', 'meta_desc', 'meta_keywords', 'meta_title', 'url_canonial'));
     }
 
     // Thêm tài khoản người dùng

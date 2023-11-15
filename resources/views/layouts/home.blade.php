@@ -1,14 +1,14 @@
 @include('layouts.home.header')
 
-{{-- slider --}}
-@yield('slider')
+    {{-- slider --}}
+    @yield('slider')
 
-{{-- sidebar --}}
-@yield('sidebar')
+    {{-- sidebar --}}
+    @yield('sidebar')
 
-{{-- content --}}
-<div class="container">
-    @yield('content')
-</div>
+    {{-- content --}}
+    <div class="container">
+        @yield('content')
+    </div>
 
 @include('layouts.home.footer')

@@ -14,22 +14,47 @@
                         <div class="form-group">
                             <label>Tên sản phẩm</label>
                             <input type="text" name="product_title" class="form-control" id="productTitle">
+                            @error('product_title')
+                                <div class="invalid-feedback fix-noti">
+                                    {{$message}} !
+                                </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label>Hình ảnh sản phẩm</label>
                             <input type="file" name="product_image" class="form-control" id="productImage">
+                            @error('product_image')
+                                <div class="invalid-feedback fix-noti">
+                                    {{$message}} !
+                                </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label>Giá sản phẩm</label>
                             <input type="text" name="product_price" class="form-control" id="productPrice">
+                            @error('product_price')
+                                <div class="invalid-feedback fix-noti">
+                                    {{$message}} !
+                                </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label>Mô tả danh mục</label>
                             <textarea style="resize: none;" rows="3" type="text" name="product_desc" class="form-control" id="productDesc"></textarea>
+                            @error('product_desc')
+                                <div class="invalid-feedback fix-noti">
+                                    {{$message}} !
+                                </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label>Nội dung</label>
-                            <textarea style="resize: none;" rows="6" type="text" name="product_content" class="form-control" id="productContent"></textarea>
+                            <textarea style="resize: none;" rows="6" type="text" name="product_content" class="form-control ckeditor" id="productContent"></textarea>
+                            @error('product_content')
+                                <div class="invalid-feedback fix-noti">
+                                    {{$message}} !
+                                </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label>Thương hiệu :</label>
@@ -39,6 +64,11 @@
                                     <option value=" {{ $item->id }} "> {{ $item->title }} </option>
                                 @endforeach
                             </select>
+                            @error('brand_id')
+                                <div class="invalid-feedback fix-noti">
+                                    {{$message}} !
+                                </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label>Danh mục :</label>
@@ -48,6 +78,11 @@
                                     <option value=" {{ $item->id }} "> {{ $item->title }} </option>
                                 @endforeach
                             </select>
+                            @error('category_id')
+                                <div class="invalid-feedback fix-noti">
+                                    {{$message}} !
+                                </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="">Hiển thị</label>
@@ -55,6 +90,11 @@
                                 <option value="0">Ẩn</option>
                                 <option value="1">Hiện</option>
                             </select>
+                            @error('product_status')
+                                <div class="invalid-feedback fix-noti">
+                                    {{$message}} !
+                                </div>
+                            @enderror
                         </div>
 
                         <button type="submit" name="add_category_product" class="btn btn-info">Thêm Danh Mục</button>

@@ -21,6 +21,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link rel="stylesheet" href="{{ asset('backend/css/morris.css')}}" type="text/css"/>
 <!-- calendar -->
 <link rel="stylesheet" href="{{ asset('backend/css/monthly.css')}}">
+
 <!-- //calendar -->
 <!-- //font-awesome icons -->
 <script src="{{ asset('backend/js/jquery2.0.3.min.js')}}"></script>
@@ -33,7 +34,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <header class="header fixed-top clearfix">
 <!--logo start-->
 <div class="brand">
-    <a href="#" class="logo">
+    <a href="{{ route('admin.index') }}" class="logo">
         E-Shopper
     </a>
     <div class="sidebar-toggle-box">
@@ -318,6 +319,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </ul>
                 </li>
 
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa-brands fa-first-order-alt"></i>
+                        <span>Tài khoản</span>
+                    </a>
+                    <ul class="sub">
+						<li><a href="">Quản lý tài khoản</a></li>
+                    </ul>
+                </li>
+
             </ul>
         </div>
         <!-- sidebar menu end-->
@@ -346,6 +357,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="{{ asset('backend/js/scripts.js')}}"></script>
 <script src="{{ asset('backend/js/jquery.slimscroll.js')}}"></script>
 <script src="{{ asset('backend/js/jquery.nicescroll.js')}}"></script>
+<script src="{{ asset('backend/ckeditor/ckeditor.js')}}"></script>
 <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
 <script src="{{ asset('backend/js/jquery.scrollTo.js')}}"></script>
 <!-- morris JavaScript -->

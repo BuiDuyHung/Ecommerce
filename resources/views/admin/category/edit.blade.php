@@ -14,10 +14,20 @@
                         <div class="form-group">
                             <label>Tên sản phẩm</label>
                             <input type="text" name="category_product_title" class="form-control" id="categoryProduct" value="{{ $category->title }}">
+                            @error('category_product_title')
+                                <div class="invalid-feedback fix-noti">
+                                    {{$message}} !
+                                </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label>Mô tả danh mục</label>
                             <textarea style="resize: none;" rows="5" type="text" name="category_product_desc" class="form-control" id="categoryDescription">{{ $category->desc }}</textarea>
+                            @error('category_product_desc')
+                                <div class="invalid-feedback fix-noti">
+                                    {{$message}} !
+                                </div>
+                            @enderror
                         </div>
 
                         <button type="submit" name="add_category_product" class="btn btn-info">Cập Nhật Danh Mục</button>

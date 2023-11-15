@@ -14,10 +14,20 @@
                         <div class="form-group">
                             <label>Tên thương hiệu</label>
                             <input type="text" name="brand_product_title" class="form-control" id="brandProductTitle" value="{{ $brand->title }}">
+                            @error('brand_product_title')
+                                <div class="invalid-feedback fix-noti">
+                                    {{$message}} !
+                                </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label>Mô tả thương hiệu</label>
                             <textarea style="resize: none;" rows="5" type="text" name="brand_product_desc" class="form-control" id="brandProductDesc">{{ $brand->desc }}</textarea>
+                            @error('brand_product_desc')
+                                <div class="invalid-feedback fix-noti">
+                                    {{$message}} !
+                                </div>
+                            @enderror
                         </div>
 
                         <button type="submit" name="add_brand_product" class="btn btn-info">Cập Nhật Thương Hiệu</button>

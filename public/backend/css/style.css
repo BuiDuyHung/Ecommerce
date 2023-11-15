@@ -3160,3 +3160,9 @@ span.fa-styling.fa-thumbs-up{
 a.active.styling-edit{
     font-size: 20px;
 }
+
+/* Fix  */
+
+.fix-noti{
+    color: red;
+}

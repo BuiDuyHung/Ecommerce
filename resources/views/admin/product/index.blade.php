@@ -44,7 +44,7 @@
                     <th>Ảnh</th>
                     <th>Tên sản phẩm</th>
                     <th>Mô tả</th>
-                    <th>Giá</th>
+                    <th>Giá (VNĐ)</th>
                     <th>Danh mục</th>
                     <th>Thương hiệu</th>
                     <th>Hiển thị</th>
@@ -62,7 +62,7 @@
                                 <img src="{{ asset('uploads/' . $item->image) }}" width="100px">
                             </td>
                             <td> {{ $item->desc }} </td>
-                            <td> {{ $item->price }} </td>
+                            <td> {{ number_format($item->price) }} </td>
                             <td> {{ $item->category->title }} </td>
                             <td> {{ $item->brand->title }} </td>
                             <td>

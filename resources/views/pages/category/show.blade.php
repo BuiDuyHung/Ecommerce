@@ -8,6 +8,7 @@
                 <div class="left-sidebar">
                     <h2>Danh mục sản phẩm</h2>
 
+
                     <div class="panel-group category-products" id="accordian"><!--category-productsr-->
                         @foreach ($categories as $item)
                             {{-- <div class="panel panel-default">
@@ -45,6 +46,10 @@
             <div class="col-sm-9 padding-right">
                 <div class="features_items"><!--features_items-->
                     <h2 class="title text-center">{{ $category_by_id->title }}</h2>
+
+                    {{-- <div class="fb-share-button" data-href="http://127.0.0.1:8000/" data-layout="" data-size=""><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ $url_canonial }}&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Chia sẻ</a></div> --}}
+                    <div class="fb-like" data-href="http://127.0.0.1:8000/" data-width="" data-layout="" data-action="" data-size="" data-share="true"></div>
+
                     @foreach ($product_by_category as $item)
                         <div class="col-sm-4">
                             <div class="product-image-wrapper">

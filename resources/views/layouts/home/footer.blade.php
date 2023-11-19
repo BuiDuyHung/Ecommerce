@@ -82,12 +82,16 @@
 
 </footer><!--/Footer-->
 
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v18.0&appId=1658479191330492" nonce="7kG192Pz"></script>
+
 <script src="{{ asset('frontend/js/jquery.js')}}"></script>
 <script src="{{ asset('frontend/js/bootstrap.min.js')}}"></script>
 <script src="{{ asset('frontend/js/jquery.scrollUp.min.js')}}"></script>
 <script src="{{ asset('frontend/js/price-range.js')}}"></script>
 <script src="{{ asset('frontend/js/jquery.prettyPhoto.js')}}"></script>
 <script src="{{ asset('frontend/js/main.js')}}"></script>
+
 
 <!-- Latest compiled and minified JavaScript -->
 {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> --}}

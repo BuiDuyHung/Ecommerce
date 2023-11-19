@@ -14,6 +14,15 @@
     <link rel="icon" type="image/x-icon" href="">
     {{-- End SEO --}}
 
+    {{-- chia sẻ facebook --}}
+    {{-- <meta property="og:image" content="">
+    <meta property="og:site_name" content="http://127.0.0.1:8000/">
+    <meta property="og:description" content="{{ $meta_desc }}">
+    <meta property="og:title" content="{{ $meta_title }}">
+    <meta property="og:url" content="{{ $url_canonial }}">
+    <meta property="og:type" content="website"> --}}
+
+
     <title> {{ $meta_title }} </title>
     <link href="{{ asset('frontend/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/css/font-awesome.min.css')}}" rel="stylesheet">

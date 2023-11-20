@@ -7,6 +7,7 @@ use App\Models\Brand;
 use App\Models\Product;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -100,6 +101,19 @@ class HomeController extends Controller
         $related_product = Product::where('category_id', $category_id)->whereNotIn('id', [$id])->get();
 
         return view('pages.product.detail', compact('categories', 'brands', 'detail_product','related_product', 'meta_desc', 'meta_keywords', 'meta_title', 'url_canonial'));
+    }
+
+    // Hàm gửi mail
+    public function send_email(){
+        $to_name = "Bùi Hùng";
+        $to_email = "hungb.z98@gmail.com";
+
+        $data =  array("name"=>"Mail từ tài khoản khách hàng", "body"=>"Mail gửi về vấn đề hàng hóa");
+
+        Mail::send("pages.email.send", $data, function($message) use ($to_name, $to_email){
+            $message->to($to_email)->subject("Test send email");
+            $message->from($to_email, $to_name);
+        });
     }
 
 }

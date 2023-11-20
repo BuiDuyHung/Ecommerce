@@ -61,6 +61,9 @@ Route::prefix('/')->name('home.')->group(function(){
 
     // Order
     Route::post('/dat-hang', [OrderController::class, 'order_place'])->name('orderPlace');
+
+    // Send mail
+    Route::get('/gui-email', [HomeController::class, 'send_email'])->name('sendEmail');
 });
 
 

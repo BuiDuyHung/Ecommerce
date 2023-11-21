@@ -1,4 +1,4 @@
-@include('layouts.home.header')
+@include('layouts.base.header')
 
     {{-- slider --}}
     @yield('slider')
@@ -11,4 +11,4 @@
         @yield('content')
     </div>
 
-@include('layouts.home.footer')
+@include('layouts.base.footer')

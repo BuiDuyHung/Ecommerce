@@ -22,8 +22,8 @@
     <meta property="og:url" content="{{ $url_canonial }}">
     <meta property="og:type" content="website"> --}}
 
-
     <title> {{ $meta_title }} </title>
+
     <link href="{{ asset('frontend/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/css/font-awesome.min.css')}}" rel="stylesheet">
     <link href="{{ asset('frontend/css/prettyPhoto.css')}}" rel="stylesheet">
@@ -36,6 +36,9 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('frontend/images/ico/apple-touch-icon-114-precomposed.png')}}">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('frontend/images/ico/apple-touch-icon-72-precomposed.png')}}">
     <link rel="apple-touch-icon-precomposed" href="{{ asset('frontend/images/ico/apple-touch-icon-57-precomposed.png')}}">
+
+    {{-- sweetalert 1 --}}
+    {{-- <link href="{{ asset('frontend/css/sweetalert.css') }}" rel="stylesheet"> --}}
 
 </head><!--/head-->
 

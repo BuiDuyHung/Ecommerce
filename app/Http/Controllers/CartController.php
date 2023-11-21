@@ -69,4 +69,9 @@ class CartController extends Controller
 
         return redirect()->route('home.showCart');
     }
+
+    public function addCartAjax(Request $request){
+        $data = $request->all();
+        print_r($data);
+    }
 }

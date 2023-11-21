@@ -34,8 +34,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
 
                         <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
@@ -109,15 +107,31 @@
                                         <h2> {{ number_format($item->price) }} VNĐ</h2>
                                         <p> {{ $item->title }} </p>
 
-                                        <form action="{{ route('home.saveCart') }}" method="POST">
+                                        {{-- Sử dụng thư viện laravel cart --}}
+                                        {{-- <form action="{{ route('home.saveCart') }}" method="POST">
                                             @csrf
                                             <input name="quantity" type="hidden" min="1" value="1" />
                                             <input name="productId_hidden" type="hidden" value="{{ $item->id }}" />
-                                            <button type="submit" class="btn btn-default add-to-cart">
+                                            <button type="submit" name="add-to-cart" class="btn btn-default add-to-cart">
+                                                <i class="fa fa-shopping-cart"></i>
+                                                Thêm giỏ hàng
+                                            </button>
+                                        </form> --}}
+                                        {{-- Sử dụng Ajax --}}
+                                        <form>
+                                            @csrf
+                                            <input type="hidden" value="{{ $item->id }}" class="product_id_{{ $item->id }}">
+                                            <input type="hidden" value="{{ $item->title }}" class="product_title_{{ $item->id }}">
+                                            <input type="hidden" value="{{ $item->image }}" class="product_image_{{ $item->id }}">
+                                            <input type="hidden" value="{{ $item->price }}" class="product_price_{{ $item->id }}">
+                                            <input type="hidden" value="1" class="product_qty_{{ $item->id }}">
+
+                                            <button type="submit" name="add-to-cart" data-id_product="{{ $item->id }}" class="btn btn-default add-to-cart">
                                                 <i class="fa fa-shopping-cart"></i>
                                                 Thêm giỏ hàng
                                             </button>
                                         </form>
+
                                     </div>
                                 </div>
                                 <div class="choose">

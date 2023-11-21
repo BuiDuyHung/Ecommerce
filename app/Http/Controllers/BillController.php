@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Shipping;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+
 class BillController extends Controller
 {
     public function checkout(Request $request){
@@ -18,12 +21,20 @@ class BillController extends Controller
     }
 
     public function addCheckout(Request $request){
-        $data = array();
-        $data['name'] = $request->shipping_name;
-        $data['address'] = $request->shipping_address;
-        $data['email'] = $request->shipping_email;
-        $data['phone'] = $request->shipping_phone;
-        $data['notes'] = $request->shipping_notes;
+        // $data = array();
+        // $data['name'] = $request->shipping_name;
+        // $data['address'] = $request->shipping_address;
+        // $data['email'] = $request->shipping_email;
+        // $data['phone'] = $request->shipping_phone;
+        // $data['notes'] = $request->shipping_notes;
+
+        $data = [
+            'name' => $request->shipping_name,
+            'address' => $request->shipping_address,
+            'email' => $request->shipping_email,
+            'phone' => $request->shipping_phone,
+            'notes' => $request->shipping_notes
+        ];
 
         $customer_id = DB::table('tbl_shipping')->insertGetId($data);
 

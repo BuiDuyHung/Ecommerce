@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
-
     public function index(Request $request)
     {
         // Seo
@@ -38,8 +37,6 @@ class HomeController extends Controller
 
         // lấy sản phẩm theo thể loại sản phẩm(category_id)
         $product_by_category = Product::where('category_id', $id)->get();
-
-
 
         // lấy thể loại sản phẩm theo id
         $category_by_id = Category::where('id', $id)->first();

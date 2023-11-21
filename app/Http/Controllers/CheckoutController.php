@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Brand;
+use App\Models\Customer;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -29,13 +31,21 @@ class CheckoutController extends Controller
 
     // Thêm tài khoản người dùng
     public function addCustomer(Request $request){
-        $data = array();
-        $data['name'] = $request->customer_name;
-        $data['email'] = $request->customer_email;
-        $data['password'] = md5($request->customer_password);
-        $data['phone'] = $request->customer_phone;
+        // $data = array();
+        // $data['name'] = $request->customer_name;
+        // $data['email'] = $request->customer_email;
+        // $data['password'] = md5($request->customer_password);
+        // $data['phone'] = $request->customer_phone;
 
-        $customer_id = DB::table('tbl_customers')->insertGetId($data);
+        // $customer_id = DB::table('tbl_customers')->insertGetId($data);
+        $data = [
+            'name' => $request->customer_name,
+            'email' => $request->customer_email,
+            'password' => md5($request->customer_password),
+            'phone' => $request->customer_phone
+        ];
+        $customer = Customer::create($data);
+        $customer_id = $customer->id;
 
         Session::put('customer_id', $customer_id);
         Session::put('customer_name', $request->customer_name);

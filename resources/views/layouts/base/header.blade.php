@@ -38,7 +38,7 @@
     <link rel="apple-touch-icon-precomposed" href="{{ asset('frontend/images/ico/apple-touch-icon-57-precomposed.png')}}">
 
     {{-- sweetalert 1 --}}
-    {{-- <link href="{{ asset('frontend/css/sweetalert.css') }}" rel="stylesheet"> --}}
+    <link href="{{ asset('frontend/css/sweetalert.css') }}" rel="stylesheet">
 
 </head><!--/head-->
 
@@ -73,7 +73,7 @@
                                 ?>
 
 
-								<li><a href="{{ route('home.showCart') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng </a></li>
+								<li><a href="{{ route('home.showCartAjax') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng </a></li>
 
                                 <?php
                                     $customer_id = Session::get('customer_id');

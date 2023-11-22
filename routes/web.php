@@ -42,6 +42,7 @@ Route::prefix('/')->name('home.')->group(function(){
     Route::post('/cap-nhat-so-luong-san-pham', [CartController::class, 'updateQty'])->name('updateQty');
     Route::get('/xoa-gio-hang/{id}', [CartController::class, 'delete'])->name('deleteCart');
 
+    Route::get('/gio-hang', [CartController::class, 'showCartAjax'])->name('showCartAjax');
     Route::post('/them-gio-hang-ajax',[CartController::class, 'addCartAjax'])->name('addCartAjax');
 
     // Bill

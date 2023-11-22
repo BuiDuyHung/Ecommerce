@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Brand;
 use App\Models\Category;
+
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
@@ -19,12 +21,27 @@ class CartController extends Controller
         $brands = Brand::where('status', '1')->get();
 
         // Seo
-        $meta_desc = "Chuyên cung cấp đồ điện tử công nghệ chính hãng, mang đến chải nhiệm tốt nhất đến tay người dùng";
-        $meta_keywords = "E shopper, laptop, PC, Điện thoại";
+        $meta_desc = "Giỏ hàng của bạn";
+        $meta_keywords = "gio hang";
         $meta_title = "E-Shopper";
         $url_canonial = $request->url();
 
         return view('pages.cart.show', compact('categories', 'brands', 'meta_desc', 'meta_keywords', 'meta_title', 'url_canonial'));
+    }
+
+    public function showCartAjax(Request $request){
+        // lấy tất cả các thể loại sản phẩm
+        $categories = Category::where('status', '1')->get();
+        // lấy tất cả các thương hiệu sản phẩm
+        $brands = Brand::where('status', '1')->get();
+
+        // Seo
+        $meta_desc = "Giỏ hàng ajax";
+        $meta_keywords = "gio hang ajax";
+        $meta_title = "E-Shopper";
+        $url_canonial = $request->url();
+
+        return view('pages.cart.cartAjax', compact('categories', 'brands', 'meta_desc', 'meta_keywords', 'meta_title', 'url_canonial'));
     }
 
     public function save(Request $request){
@@ -72,6 +89,41 @@ class CartController extends Controller
 
     public function addCartAjax(Request $request){
         $data = $request->all();
-        print_r($data);
+        $session_id = substr(md5(microtime()),rand(0,26),5);
+
+        $cart = Session::get('cart');
+        if($cart == true){
+            $is_avaiable = 0;
+            foreach($cart as $item){
+                if($item['product_id'] == $data['product_id']){
+                    $is_avaiable++;
+                }
+            }
+
+            if($is_avaiable == 0){
+                $cart[] = array(
+                    'session_id' => $session_id,
+                    'product_id' => $data['product_id'],
+                    'product_title' => $data['product_title'],
+                    'product_image' => $data['product_image'],
+                    'product_qty' => $data['product_qty'],
+                    'product_price' => $data['product_price'],
+                );
+
+                Session::put('cart', $cart);
+            }
+        }else{
+            $cart[] = array(
+                'session_id' => $session_id,
+                'product_id' => $data['product_id'],
+                'product_title' => $data['product_title'],
+                'product_image' => $data['product_image'],
+                'product_qty' => $data['product_qty'],
+                'product_price' => $data['product_price'],
+            );
+        }
+
+        Session::put('cart', $cart);
+        Session::save();
     }
 }

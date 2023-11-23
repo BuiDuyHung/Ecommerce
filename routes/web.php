@@ -43,7 +43,11 @@ Route::prefix('/')->name('home.')->group(function(){
     Route::get('/xoa-gio-hang/{id}', [CartController::class, 'delete'])->name('deleteCart');
 
     Route::get('/gio-hang', [CartController::class, 'showCartAjax'])->name('showCartAjax');
-    Route::post('/them-gio-hang-ajax',[CartController::class, 'addCartAjax'])->name('addCartAjax');
+    Route::post('/them-san-pham-vao-gio-hang',[CartController::class, 'addCartAjax'])->name('addCartAjax');
+    Route::post('/cap-nhat-gio-hang',[CartController::class, 'updateCartAjax'])->name('updateCartAjax');
+    Route::get('/xoa-san-pham/{id}', [CartController::class, 'deleteCartAjax'])->name('deleteCartAjax');
+    Route::get('/xoa-tat-san-pham', [CartController::class, 'deleteAllAjax'])->name('deleteAllAjax');
+
 
     // Bill
     Route::get('/thu-tuc-thanh-toan', [BillController::class, 'checkout'])->name('checkout');

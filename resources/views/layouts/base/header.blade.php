@@ -116,7 +116,7 @@
                                     </ul>
                                 </li>
 								<li class="dropdown"><a href="#">Tin tức</a></li>
-								<li><a href="{{ route('home.showCart') }}">Giỏ hàng</a></li>
+								<li><a href="{{ route('home.showCartAjax') }}">Giỏ hàng</a></li>
 								<li><a href="contact-us.html">Liên hệ</a></li>
 							</ul>
 						</div>

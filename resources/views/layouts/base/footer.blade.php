@@ -97,6 +97,15 @@
 <script src="{{ asset('frontend/js/sweetalert.js')}}"></script>
 {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
 
+<script>
+    // hiden notification after 2s
+    $(document).ready(function() {
+        setTimeout(function() {
+            $('#notification').fadeOut('fast');
+        }, 2000); // 2 giây
+    });
+</script>
+
 {{-- Cart by Ajax --}}
 <script>
     $(document).ready(function(){

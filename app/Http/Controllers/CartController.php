@@ -126,4 +126,45 @@ class CartController extends Controller
         Session::put('cart', $cart);
         Session::save();
     }
+
+    public function deleteCartAjax($id){
+        $cart = Session::get('cart');
+        if($cart){
+            foreach($cart as $key => $item){
+                if($item['session_id'] == $id){
+                    unset($cart[$key]);
+                }
+            }
+            Session::put('cart', $cart);
+        }
+
+        return redirect()->route('home.showCartAjax')->with('msg', 'Xóa sản phẩm thành công !');
+    }
+
+    public function updateCartAjax(Request $request){
+        $data = $request->all();
+        $cart = Session::get('cart');
+        if($cart){
+            foreach($data['cart_qty'] as $key => $qty){
+                foreach($cart as $session => $val){
+                    if($val['session_id'] == $key){
+                        $cart[$session]['product_qty'] = $qty;
+                    }
+                }
+            }
+
+            Session::put('cart', $cart);
+        }
+
+        return redirect()->route('home.showCartAjax')->with('msg', 'Cập nhật giỏ hàng thành công !');
+    }
+
+    public function deleteAllAjax(){
+        $cart = Session::get('cart');
+        if($cart){
+            Session::forget('cart');
+        }
+
+        return redirect()->route('home.showCartAjax')->with('msg', 'Xóa tất cả sản phẩm thành công !');
+    }
 }

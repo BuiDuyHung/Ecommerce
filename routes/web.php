@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\ManaOrderController;
 use App\Http\Controllers\Admin\OrderAdController;
 use App\Http\Controllers\Admin\ProductController;
@@ -48,6 +49,8 @@ Route::prefix('/')->name('home.')->group(function(){
     Route::get('/xoa-san-pham/{id}', [CartController::class, 'deleteCartAjax'])->name('deleteCartAjax');
     Route::get('/xoa-tat-san-pham', [CartController::class, 'deleteAllAjax'])->name('deleteAllAjax');
 
+    // Coupon
+    Route::post('/phieu-giam-gia',[CartController::class, 'checkCoupon'])->name('checkCoupon');
 
     // Bill
     Route::get('/thu-tuc-thanh-toan', [BillController::class, 'checkout'])->name('checkout');
@@ -116,5 +119,8 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::get('/order', [ManaOrderController::class, 'index'])->name('indexOrder');
     Route::get('/view-order/{id}', [ManaOrderController::class, 'view'])->name('viewOrder');
     Route::get('/destroy-order/{id}', [ManaOrderController::class, 'destroy'])->name('destroyOrder');
+
+    // Coupon
+    Route::get('/coupon', [CouponController::class, 'index'])->name('indexCoupon');
 
 });

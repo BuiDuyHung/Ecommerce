@@ -13,8 +13,17 @@
                         @csrf
                         <div class="form-group">
                             <label>Tên thương hiệu</label>
-                            <input type="text" name="brand_product_title" class="form-control" id="brandProductTitle" value="{{ $brand->title }}">
+                            <input type="text" name="brand_product_title" class="form-control title" id="brandProductTitle" value="{{ $brand->title }}">
                             @error('brand_product_title')
+                                <div class="invalid-feedback fix-noti">
+                                    {{$message}} !
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label>Slug</label>
+                            <input type="text" name="brand_product_slug" class="form-control slug" id="brandProductSlug" value="{{ $brand->slug }}">
+                            @error('brand_product_slug')
                                 <div class="invalid-feedback fix-noti">
                                     {{$message}} !
                                 </div>

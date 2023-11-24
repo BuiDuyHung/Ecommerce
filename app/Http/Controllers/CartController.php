@@ -167,4 +167,9 @@ class CartController extends Controller
 
         return redirect()->route('home.showCartAjax')->with('msg', 'Xóa tất cả sản phẩm thành công !');
     }
+
+    // Phiếu giảm giá
+    public function checkCoupon(Request $request){
+        $data = $request->all();
+    }
 }

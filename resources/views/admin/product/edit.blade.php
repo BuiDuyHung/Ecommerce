@@ -21,6 +21,15 @@
                             @enderror
                         </div>
                         <div class="form-group">
+                            <label>Slug</label>
+                            <input type="text" name="product_slug" class="form-control slug" id="productSlug"  value="{{ $product->slug }}">
+                            @error('product_slug')
+                                <div class="invalid-feedback fix-noti">
+                                    {{$message}} !
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
                             <label>Hình ảnh sản phẩm</label>
                             <input type="file" name="product_image" class="form-control" id="productImage" >
                             <img src="{{ asset('uploads/'.$product->image) }}" width="100px">

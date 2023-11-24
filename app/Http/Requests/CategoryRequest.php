@@ -23,6 +23,7 @@ class CategoryRequest extends FormRequest
     {
         return [
             'category_product_title' => 'required|min:3',
+            'category_product_slug' => 'required|min:3',
             'category_product_desc' => 'required|min:6',
             'category_product_keywords' => 'required|min:3',
             'category_product_status' => ['required', function($attribute, $value, $fail) {
@@ -45,6 +46,7 @@ class CategoryRequest extends FormRequest
     {
         return [
             'category_product_title' => 'Tên danh mục',
+            'category_product_slug' => 'Slug',
             'category_product_desc' => 'Mô tả danh mục',
             'category_product_status' => 'Trạng thái danh mục',
             'category_product_keywords' => 'Từ khóa danh mục',

@@ -12,6 +12,7 @@ class Brand extends Model
 
     protected $fillable = [
         'title',
+        'slug',
         'desc',
         'status',
         'keywords',

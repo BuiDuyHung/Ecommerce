@@ -23,6 +23,7 @@ class ProductRequest extends FormRequest
     {
         return [
             'product_title' => 'required|min:3',
+            'product_slug' => 'required|min:3',
             'product_image' => 'required|min:6',
             'product_price' => 'required|min:6',
             'product_desc' => 'required|min:6',
@@ -59,6 +60,7 @@ class ProductRequest extends FormRequest
     {
         return [
             'product_title' => 'Tên sản phẩm',
+            'product_slug' => 'Slug',
             'product_image' => 'Hình ảnh sản phẩm',
             'product_price' => 'Giá sản phẩm',
             'product_desc' => 'Mô tả sản phẩm',

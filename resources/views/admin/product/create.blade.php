@@ -13,8 +13,17 @@
                         @csrf
                         <div class="form-group">
                             <label>Tên sản phẩm</label>
-                            <input type="text" name="product_title" class="form-control" id="productTitle">
+                            <input type="text" name="product_title" class="form-control title" id="productTitle">
                             @error('product_title')
+                                <div class="invalid-feedback fix-noti">
+                                    {{$message}} !
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label>Slug</label>
+                            <input type="text" name="product_slug" class="form-control slug" id="productSlug">
+                            @error('product_slug')
                                 <div class="invalid-feedback fix-noti">
                                     {{$message}} !
                                 </div>

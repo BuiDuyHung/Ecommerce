@@ -34,6 +34,7 @@ class CategoryController extends Controller
     {
         $category = new Category();
         $category->title = $request->category_product_title;
+        $category->slug = $request->category_product_slug;
         $category->desc = $request->category_product_desc;
         $category->status = $request->category_product_status;
         $category->keywords = $request->category_product_keywords;
@@ -66,6 +67,7 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
         $category->title = $request->category_product_title;
+        $category->slug = $request->category_product_slug;
         $category->desc = $request->category_product_desc;
         $category->keywords = $request->category_product_keywords;
         $category->save();

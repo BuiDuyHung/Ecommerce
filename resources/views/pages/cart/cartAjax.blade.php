@@ -125,10 +125,9 @@
                                             <tr>
                                                 <td>
                                                     <input type="submit" value="Cập nhật giỏ hàng" name="update_qty" class="btn check_out">
-                                                </td>
-                                                <td>
                                                     <a class="btn btn-default check_out" href="{{ route('home.deleteAllAjax') }}">Xóa tất cả</a>
                                                 </td>
+
                                             </tr>
                                         @else
                                             <tr>
@@ -141,7 +140,13 @@
                                     </tbody>
 
                                 </form>
-
+                                <td>
+                                    <form action="{{ route('home.checkCoupon') }}" method="POST">
+                                        @csrf
+                                        <input type="text" class="form-control" name="coupon" placeholder="Nhập mã giảm giá"> <br>
+                                        <input type="submit" class="btn btn-default check-coupon" name="check-coupon" value="Tính mã giảm giá">
+                                    </form>
+                                </td>
                             </table>
                         </div>
                     </div>
@@ -159,9 +164,7 @@
                                         <li>Thành tiền :<span> VNĐ</span></li>
                                     </ul>
 
-                                        <a class="btn btn-default check_out" style="float: right;" href="{{ route('home.checkout') }}">Thanh Toán</a>
-
-                                        <a class="btn btn-default check_out" style="float: right;" href="">Tính mã giảm giá</a>
+                                    <a class="btn btn-default check_out" style="float: right;" href="{{ route('home.checkout') }}">Thanh Toán</a>
 
                                 </div>
                             </div>

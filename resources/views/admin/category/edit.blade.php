@@ -22,7 +22,7 @@
                         </div>
                         <div class="form-group">
                             <label>Slug</label>
-                            <input type="text" name="category_product_slug" class="form-control slug" id="categoryProductSlug" value="{{ $category->slug }}>
+                            <input type="text" name="category_product_slug" class="form-control slug" id="categoryProductSlug" value="{{ $category->slug }}">
                             @error('category_product_slug')
                                 <div class="invalid-feedback fix-noti">
                                     {{$message}} !

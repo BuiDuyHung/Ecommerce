@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CategoryRequest extends FormRequest
+class CouponRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,13 +22,13 @@ class CategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'category_product_title' => 'required|min:2',
-            'category_product_slug' => 'required|min:2',
-            'category_product_desc' => 'required|min:6',
-            'category_product_keywords' => 'required|min:2',
-            'category_product_status' => ['required', function($attribute, $value, $fail) {
+            'coupon_name' => 'required|min:2',
+            'coupon_code' => 'required|min:2',
+            'coupon_qty' => 'required|min:2',
+            'coupon_value' => 'required|min:2',
+            'coupon_condition' => ['required', function($attribute, $value, $fail) {
                 if($value == '0'){
-                    $fail('Vui lòng chọn trạng thái cho danh mục');
+                    $fail('Vui lòng chọn tính năng mã giảm giá');
                 }
             }],
         ];
@@ -45,11 +45,11 @@ class CategoryRequest extends FormRequest
     public function attributes()
     {
         return [
-            'category_product_title' => 'Tên danh mục',
-            'category_product_slug' => 'Slug',
-            'category_product_desc' => 'Mô tả danh mục',
-            'category_product_status' => 'Trạng thái danh mục',
-            'category_product_keywords' => 'Từ khóa danh mục',
+            'coupon_name' => 'Tên mã giảm giá',
+            'coupon_code' => 'Mã giảm giá',
+            'coupon_qty' => 'Số lượng mã giảm giá',
+            'coupon_value' => 'Giá trị mã giảm giá',
+            'coupon_condition' => 'Tính năng mã giảm giá',
         ];
     }
 }

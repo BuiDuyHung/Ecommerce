@@ -22,8 +22,8 @@ class BrandRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'brand_product_title' => 'required|min:3',
-            'brand_product_slug' => 'required|min:3',
+            'brand_product_title' => 'required|min:2',
+            'brand_product_slug' => 'required|min:2',
             'brand_product_desc' => 'required|min:6',
             'brand_product_keywords' => 'required|min:3',
             'brand_product_status' => ['required', function($attribute, $value, $fail) {

@@ -122,5 +122,9 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
     // Coupon
     Route::get('/coupon', [CouponController::class, 'index'])->name('indexCoupon');
-
+    Route::get('/create-coupon', [CouponController::class, 'create'])->name('createCoupon');
+    Route::post('/store-coupon', [CouponController::class, 'store'])->name('storeCoupon');
+    Route::get('/edit-coupon/{id}', [CouponController::class, 'edit'])->name('editCoupon');
+    Route::post('/update-coupon/{id}', [CouponController::class, 'update'])->name('updateCoupon');
+    Route::get('/destroy-coupon/{id}', [CouponController::class, 'destroy'])->name('destroyCoupon');
 });

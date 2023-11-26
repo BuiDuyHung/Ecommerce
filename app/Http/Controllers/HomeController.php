@@ -31,7 +31,7 @@ class HomeController extends Controller
     }
 
     // Hiển thị danh sách các sản phẩm theo danh mục
-    public function showCategory(Request $request, string $id){
+    public function showCategory(Request $request, $id){
         $categories = Category::where('status', '1')->get();
         $brands = Brand::where('status', '1')->get();
 
@@ -54,7 +54,7 @@ class HomeController extends Controller
     }
 
     // Hiển thị danh sách các sản phẩm theo thương hiệu
-    public function showBrand(Request $request, string $id){
+    public function showBrand(Request $request, $id){
         $categories = Category::where('status', '1')->get();
         $brands = Brand::where('status', '1')->get();
 
@@ -76,7 +76,7 @@ class HomeController extends Controller
     }
 
     // Hiển thị cho tiết sản phẩm
-    public function detailProduct(Request $request, string $id){
+    public function detailProduct(Request $request, $id){
         $categories = Category::where('status', '1')->get();
         $brands = Brand::where('status', '1')->get();
 

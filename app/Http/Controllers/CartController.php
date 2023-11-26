@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Coupon;
 
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
@@ -171,5 +172,38 @@ class CartController extends Controller
     // Phiếu giảm giá
     public function checkCoupon(Request $request){
         $data = $request->all();
+        $coupon = Coupon::where('code', $data['coupon'])->first();
+
+        if($coupon){
+            $count_coupon = $coupon->count();
+            if($count_coupon > 0){
+                $coupon_session = Session::get('coupon');
+                if($coupon_session){
+                    $is_avaiable = 0;
+                    if($is_avaiable == 0){
+                        $cou[] = array(
+                            'coupon_code' => $coupon->code,
+                            'coupon_condition' => $coupon->condition,
+                            'coupon_quantity' => $coupon->quantity
+                        );
+
+                        Session::get('coupon', $cou);
+                    }else{
+                        $cou[] = array(
+                            'coupon_code' => $coupon->code,
+                            'coupon_condition' => $coupon->condition,
+                            'coupon_quantity' => $coupon->quantity
+                        );
+
+                        Session::get('coupon', $cou);
+                    }
+                }
+
+                Session::save();
+                return redirect()->route('home.showCartAjax')->with('msg', 'Thêm mã giảm giá thành công !');
+            }
+        }else{
+            return redirect()->route('home.showCartAjax')->with('error', 'Mã giảm giá không tồn tại. Vui lòng kiểm tra lại !');
+        }
     }
 }

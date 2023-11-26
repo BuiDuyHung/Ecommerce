@@ -67,7 +67,14 @@
                                     @endif
                                 </span>
                             </td>
-                            <th> {{ $item->value }} </th>
+                            <td>
+                                @if ($item->condition == 1)
+                                    <span class="">Giảm {{ $item->value }} %</span>
+                                @else
+                                    <span class="">Giảm {{ number_format($item->value) }} VNĐ</span>
+                                @endif
+
+                            </td>
                             <td>
                                 <a href="{{ route('admin.editCoupon', $item->id) }}" class="active styling-edit" ui-toggle-class="">
                                     <i class="fa fa-pencil-square-o text-success text-active"></i>

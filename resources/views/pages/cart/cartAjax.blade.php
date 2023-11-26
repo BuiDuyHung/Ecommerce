@@ -56,7 +56,12 @@
                                 <div class="alert alert-success text-center" id="notification">
                                     {{session('msg')}}
                                 </div>
+                            @elseif (session('error'))
+                                <div class="alert alert-danger text-center" id="notification">
+                                    {{session('error')}}
+                                </div>
                             @endif
+
                             <table class="table table-condensed">
                                 <form action="{{ route('home.updateCartAjax') }}" method="POST">
                                     @csrf
@@ -159,9 +164,37 @@
                                 <div class="total_area">
                                     <ul>
                                         <li>Tổng :<span>{{ number_format($total) }} VNĐ</span></li>
-                                        <li>Thuế :<span> VNĐ</span></li>
+                                        <li>
+                                            @if (Session::get('coupon'))
+                                                @foreach (Session::get('coupon') as $key => $item)
+                                                    @if ($cou['coupon_condition'] == 1)
+                                                        Mã giảm giá : {{ $cou['coupon_quantity'] }} %
+                                                        <p>
+                                                            @php
+                                                                $total_coupon = ($total*$item['coupon_quantity'])/100;
+                                                                echo '<p>Tổng giảm: </p>'.numberformat($total_coupon).' VNĐ</p>';
+                                                            @endphp
+                                                        </p>
+                                                        <p> {{ number_format($total-$total_coupon) }} VNĐ</p>
+                                                    @elseif ($cou['coupon_condition'] == 2)
+                                                        Mã giảm giá : {{ number_format($cou['coupon_quantity']) }} %
+                                                        <p>
+                                                            @php
+                                                                $total_coupon = $total - $cou['coupon_quantity'];
+                                                            @endphp
+                                                        </p>
+                                                        <p> {{ number_format($total-$total_coupon) }} VNĐ</p>
+                                                    @endif
+                                                @endforeach
+
+                                            @endif
+
+
+                                        </li>
+                                        <li>Tiền sau khi áp mã :<span> VNĐ</span></li>
+                                        {{-- <li>Thuế :<span> VNĐ</span></li>
                                         <li>Phí vận chuyển :<span>Free</span></li>
-                                        <li>Thành tiền :<span> VNĐ</span></li>
+                                        <li>Thành tiền :<span> VNĐ</span></li> --}}
                                     </ul>
 
                                     <a class="btn btn-default check_out" style="float: right;" href="{{ route('home.checkout') }}">Thanh Toán</a>

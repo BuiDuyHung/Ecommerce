@@ -160,18 +160,27 @@ class CartController extends Controller
         return redirect()->route('home.showCartAjax')->with('msg', 'Cập nhật giỏ hàng thành công !');
     }
 
+    // Xóa tất cả sản phẩm trong giỏ hàng
     public function deleteAllAjax(){
         $cart = Session::get('cart');
-        $coupon = Session::get('coupon');
+
         if($cart){
             Session::forget('cart');
+            Session::forget('coupon');
         }
+
+        return redirect()->route('home.showCartAjax')->with('msg', 'Xóa tất cả sản phẩm thành công !');
+    }
+
+    // Xóa mã giảm giá
+    public function deleteCoupon(){
+        $coupon = Session::get('coupon');
 
         if($coupon){
             Session::forget('coupon');
         }
 
-        return redirect()->route('home.showCartAjax')->with('msg', 'Xóa tất cả sản phẩm thành công !');
+        return redirect()->route('home.showCartAjax')->with('msg', 'Xóa mã giảm giá thành công !');
     }
 
     // Phiếu giảm giá
@@ -183,15 +192,10 @@ class CartController extends Controller
         if ($coupon) {
             $coupons = Session::get('coupon', []);
 
-            // Kiểm tra xem mã giảm giá đã tồn tại trong session chưa
-            $existingCouponIndex = array_search($coupon->code, array_column($coupons, 'coupon_code'));
+            // Xóa tất cả các mã giảm giá cũ
+            $coupons = [];
 
-            if ($existingCouponIndex !== false) {
-                // Mã giảm giá đã tồn tại, xóa hết mã giảm giá cũ
-                $coupons = [];
-            }
-
-            // Thêm mới vào session
+            // Thêm mã giảm giá mới
             $coupons[] = array(
                 'coupon_code' => $coupon->code,
                 'coupon_condition' => $coupon->condition,

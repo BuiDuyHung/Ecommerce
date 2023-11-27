@@ -1805,7 +1805,7 @@ h2.title {
   background: #FE980F;
   border-radius: 0;
   color: #FFFFFF;
-  margin-top: 18px;
+  margin-top: 5px;
   border: none;
   padding: 5px 15px;
 }
@@ -2611,4 +2611,8 @@ h2.title {
 
 .fix-header1{
     margin: 25px 40px 0px 80px;
+}
+
+.fix-input-coupon{
+    display: flex;
 }

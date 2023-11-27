@@ -51,6 +51,7 @@ Route::prefix('/')->name('home.')->group(function(){
 
     // Coupon
     Route::post('/phieu-giam-gia',[CartController::class, 'checkCoupon'])->name('checkCoupon');
+    Route::get('/xoa-phieu-giam-gia',[CartController::class, 'deleteCoupon'])->name('deleteCoupon');
 
     // Bill
     Route::get('/thu-tuc-thanh-toan', [BillController::class, 'checkout'])->name('checkout');

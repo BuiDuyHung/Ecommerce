@@ -162,48 +162,49 @@ class CartController extends Controller
 
     public function deleteAllAjax(){
         $cart = Session::get('cart');
+        $coupon = Session::get('coupon');
         if($cart){
             Session::forget('cart');
+        }
+
+        if($coupon){
+            Session::forget('coupon');
         }
 
         return redirect()->route('home.showCartAjax')->with('msg', 'Xóa tất cả sản phẩm thành công !');
     }
 
     // Phiếu giảm giá
-    public function checkCoupon(Request $request){
+    public function checkCoupon(Request $request)
+    {
         $data = $request->all();
         $coupon = Coupon::where('code', $data['coupon'])->first();
 
-        if($coupon){
-            $count_coupon = $coupon->count();
-            if($count_coupon > 0){
-                $coupon_session = Session::get('coupon');
-                if($coupon_session){
-                    $is_avaiable = 0;
-                    if($is_avaiable == 0){
-                        $cou[] = array(
-                            'coupon_code' => $coupon->code,
-                            'coupon_condition' => $coupon->condition,
-                            'coupon_quantity' => $coupon->quantity
-                        );
+        if ($coupon) {
+            $coupons = Session::get('coupon', []);
 
-                        Session::get('coupon', $cou);
-                    }else{
-                        $cou[] = array(
-                            'coupon_code' => $coupon->code,
-                            'coupon_condition' => $coupon->condition,
-                            'coupon_quantity' => $coupon->quantity
-                        );
+            // Kiểm tra xem mã giảm giá đã tồn tại trong session chưa
+            $existingCouponIndex = array_search($coupon->code, array_column($coupons, 'coupon_code'));
 
-                        Session::get('coupon', $cou);
-                    }
-                }
-
-                Session::save();
-                return redirect()->route('home.showCartAjax')->with('msg', 'Thêm mã giảm giá thành công !');
+            if ($existingCouponIndex !== false) {
+                // Mã giảm giá đã tồn tại, xóa hết mã giảm giá cũ
+                $coupons = [];
             }
-        }else{
+
+            // Thêm mới vào session
+            $coupons[] = array(
+                'coupon_code' => $coupon->code,
+                'coupon_condition' => $coupon->condition,
+                'coupon_value' => $coupon->value
+            );
+
+            Session::put('coupon', $coupons);
+            Session::save();
+
+            return redirect()->route('home.showCartAjax')->with('msg', 'Thêm mã giảm giá thành công !');
+        } else {
             return redirect()->route('home.showCartAjax')->with('error', 'Mã giảm giá không tồn tại. Vui lòng kiểm tra lại !');
         }
+        // Session::forget('coupon');
     }
 }

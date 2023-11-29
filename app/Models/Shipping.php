@@ -11,7 +11,7 @@ class Shipping extends Model
 {
     use HasFactory;
 
-    public $table = 'tbl_shipping';
+    protected $table = 'tbl_shipping';
 
     protected $fillable = [
         'name',

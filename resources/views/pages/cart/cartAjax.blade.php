@@ -122,7 +122,7 @@
                                                         </p>
                                                     </td>
                                                     <td class="cart_delete">
-                                                        <a class="cart_quantity_delete" href="{{ route('home.deleteCartAjax', $item['session_id']) }}"><i class="fa fa-times"></i></a>
+                                                        <a onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này ?')" class="cart_quantity_delete" href="{{ route('home.deleteCartAjax', $item['session_id']) }}"><i class="fa fa-times"></i></a>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -130,8 +130,8 @@
                                             <tr>
                                                 <td>
                                                     <input type="submit" value="Cập nhật giỏ hàng" name="update_qty" class="btn check_out">
-                                                    <a class="btn btn-default check_out" href="{{ route('home.deleteCoupon') }}">Xóa mã giảm giá</a>
-                                                    <a class="btn btn-default check_out" href="{{ route('home.deleteAllAjax') }}">Xóa tất cả</a>
+                                                    <a onclick="return confirm('Bạn có chắc chắn muốn xóa mã giảm giá này ?')" class="btn btn-default check_out" href="{{ route('home.deleteCoupon') }}">Xóa mã giảm giá</a>
+                                                    <a onclick="return confirm('Bạn có chắc chắn muốn xóa tất cả sản phẩm trong giỏ hàng ?')" class="btn btn-default check_out" href="{{ route('home.deleteAllAjax') }}">Xóa tất cả</a>
                                                 </td>
                                             </tr>
                                         @else

@@ -12,7 +12,7 @@ use App\Models\OrderDetail;
 class Product extends Model
 {
     use HasFactory;
-    public $table = 'tbl_product';
+    protected $table = 'tbl_product';
 
     protected $fillable = [
         'title',

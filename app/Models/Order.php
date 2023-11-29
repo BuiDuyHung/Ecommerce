@@ -14,7 +14,7 @@ class Order extends Model
 {
     use HasFactory;
 
-    public $table = 'tbl_order';
+    protected $table = 'tbl_order';
 
     protected $fillable = [
         'total',

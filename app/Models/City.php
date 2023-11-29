@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Coupon extends Model
+class City extends Model
 {
     use HasFactory;
-    protected $table = 'tbl_coupon';
+
+    protected $table = 'tbl_tinhthanhpho';
+    public $timestamps = false;
 
     protected $fillable = [
+        'matp',
         'name',
-        'code',
-        'quantity',
-        'condition',
-        'value'
+        'type',
     ];
 }

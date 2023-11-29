@@ -12,7 +12,7 @@ class OrderDetail extends Model
 {
     use HasFactory;
 
-    public $table = 'tbl_order_detail';
+    protected $table = 'tbl_order_detail';
 
     protected $fillable = [
         'order_id',

@@ -332,6 +332,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                 <li class="sub-menu">
                     <a href="javascript:;">
+                        <i class="fa-solid fa-plane"></i>
+                        <span>Vận chuyển</span>
+                    </a>
+                    <ul class="sub">
+						<li><a href="{{ route('admin.delivery') }}">Quản lý vận chuyển</a></li>
+                    </ul>
+                </li>
+
+                <li class="sub-menu">
+                    <a href="javascript:;">
                         <i class="fa-solid fa-user"></i>
                         <span>Tài khoản</span>
                     </a>
@@ -363,6 +373,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--main content end-->
 </section>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 <script
   src="https://code.jquery.com/jquery-2.0.3.js"
   integrity="sha256-lCf+LfUffUxr81+W0ZFpcU0LQyuZ3Bj0F2DQNCxTgSI="
@@ -431,6 +443,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	});
 	</script>
+
     <!-- calendar -->
 	<script type="text/javascript" src="{{ asset('backend/js/monthly.js')}}"></script>
 	<script type="text/javascript">
@@ -473,6 +486,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         });
     </script>
 
+    {{-- Slug --}}
     <script>
         // Slug
         const getSlug = (title) => {
@@ -528,5 +542,58 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         isChangeSlug = true;
         });
     </script>
+    {{-- End slug --}}
+
+    <script>
+        $(document).ready(function(){
+            // $('.add_delivery').click(function(){
+            //     var city = $('.city').val()
+            //     var district = $('.district').val()
+            //     var commune = $('.commune').val()
+            // })
+
+            // $(".title-select").on("change", function () {
+            //     var action = $(this).attr('id');
+            //     var id = $(this).val(); // Change $this to $(this)
+            //     var _token = $('input[name="_token"]').val(); // Correct the selector for input
+            //     var result = '';
+
+            //     alert(action);
+            //     alert(id);
+
+
+                // if(action == 'city'){
+                //     result = 'district';
+                // }else{
+                //     result = 'commune';
+                // }
+
+                // $.ajax({
+                //     url: "{{ route('admin.selectDelivery') }}",
+                //     method: "POST",
+                //     data: {action:action,id:id,_token:_token},
+                //     success:function(data){
+                //         $('#'+result).html(data)
+                //     }
+                // })
+            // });
+
+            $(".title-select").on("change", function () {
+                alert("Change event triggered!"); // Thêm dòng này để kiểm tra sự kiện có được kích hoạt không
+                var action = $(this).attr('id');
+                var id = $(this).val();
+                var _token = $('input[name="_token"]').val();
+                var result = '';
+
+                alert(action);
+                alert(id);
+                alert(_token);
+
+            });
+
+
+        })
+    </script>
+
 </body>
 </html>

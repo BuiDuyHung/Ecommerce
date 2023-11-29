@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SearchController;
@@ -128,4 +129,8 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::get('/edit-coupon/{id}', [CouponController::class, 'edit'])->name('editCoupon');
     Route::post('/update-coupon/{id}', [CouponController::class, 'update'])->name('updateCoupon');
     Route::get('/destroy-coupon/{id}', [CouponController::class, 'destroy'])->name('destroyCoupon');
+
+    // Delivery
+    Route::get('/delivery', [DeliveryController::class, 'delivery'])->name('delivery');
+    Route::post('/select-delivery', [DeliveryController::class, 'selectDelivery'])->name('selectDelivery');
 });

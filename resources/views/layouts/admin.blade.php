@@ -24,6 +24,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!-- //calendar -->
 <!-- //font-awesome icons -->
+
 <script src="{{ asset('backend/js/jquery2.0.3.min.js')}}"></script>
 <script src="{{ asset('backend/js/raphael-min.js')}}"></script>
 <script src="{{ asset('backend/js/morris.js')}}"></script>
@@ -372,13 +373,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </section>
 <!--main content end-->
 </section>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-<script
+<!-- Sử dụng jQuery phiên bản 3.3.1 -->
+{{-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> --}}
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script> --}}
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+{{-- <script
   src="https://code.jquery.com/jquery-2.0.3.js"
   integrity="sha256-lCf+LfUffUxr81+W0ZFpcU0LQyuZ3Bj0F2DQNCxTgSI="
-  crossorigin="anonymous"></script>
+  crossorigin="anonymous"></script> --}}
 <script src="{{ asset('backend/js/bootstrap.js')}}"></script>
 <script src="{{ asset('backend/js/jquery.dcjqaccordion.2.7.js')}}"></script>
 <script src="{{ asset('backend/js/scripts.js')}}"></script>
@@ -388,6 +393,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
 <script src="{{ asset('backend/js/jquery.scrollTo.js')}}"></script>
 <!-- morris JavaScript -->
+
 <script>
 	$(document).ready(function() {
 		//BOX BUTTON SHOW AND CLOSE
@@ -546,54 +552,35 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     <script>
         $(document).ready(function(){
-            // $('.add_delivery').click(function(){
-            //     var city = $('.city').val()
-            //     var district = $('.district').val()
-            //     var commune = $('.commune').val()
-            // })
-
-            // $(".title-select").on("change", function () {
-            //     var action = $(this).attr('id');
-            //     var id = $(this).val(); // Change $this to $(this)
-            //     var _token = $('input[name="_token"]').val(); // Correct the selector for input
-            //     var result = '';
-
-            //     alert(action);
-            //     alert(id);
-
-
-                // if(action == 'city'){
-                //     result = 'district';
-                // }else{
-                //     result = 'commune';
-                // }
-
-                // $.ajax({
-                //     url: "{{ route('admin.selectDelivery') }}",
-                //     method: "POST",
-                //     data: {action:action,id:id,_token:_token},
-                //     success:function(data){
-                //         $('#'+result).html(data)
-                //     }
-                // })
-            // });
-
-            $(".title-select").on("change", function () {
-                alert("Change event triggered!"); // Thêm dòng này để kiểm tra sự kiện có được kích hoạt không
+            $(".choose").on("change", function () {
                 var action = $(this).attr('id');
                 var id = $(this).val();
                 var _token = $('input[name="_token"]').val();
                 var result = '';
 
-                alert(action);
-                alert(id);
-                alert(_token);
+                if (action == 'city') {
+                    result = 'district';
+                } else {
+                    result = 'commune';
+                }
 
+                $.ajax({
+                    url: "{{ route('admin.selectDelivery') }}",
+                    method: "POST",
+                    data: {
+                        action: action,
+                        id: id,
+                        _token: _token
+                    },
+                    success: function (data) {
+                        $('#' + result).html(data);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("AJAX request failed:", status, error);
+                    }
+                });
             });
-
-
         })
     </script>
-
 </body>
 </html>

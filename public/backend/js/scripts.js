@@ -283,7 +283,6 @@
 
         $('.popovers').popover();
 
-
     });
 
 

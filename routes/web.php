@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
@@ -67,6 +68,12 @@ Route::prefix('/')->name('home.')->group(function(){
     Route::get('/thoat-dang-nhap-thanh-toan', [CheckoutController::class, 'logout_checkout'])->name('logoutCheckout');
     Route::post('/them-nguoi-dung', [CheckoutController::class, 'addCustomer'])->name('addCustomer');
     Route::post('/dang-nhap-nguoi-dung', [CheckoutController::class, 'login_customer'])->name('loginCustomer');
+
+    // login and register
+    Route::get('/dang-nhap', [CustomerController::class, 'login'])->name('login');
+    Route::post('/dang-nhap-nguoi-dung', [CustomerController::class, 'login_customer'])->name('loginCustomer2');
+    Route::get('/dang-ky', [CustomerController::class, 'register'])->name('register');
+    Route::post('/dang-ky-nguoi-dung', [CustomerController::class, 'add_customer'])->name('addCustomer2');
 
     // Search
     Route::post('/tim-kiem', [SearchController::class, 'search'])->name('search');

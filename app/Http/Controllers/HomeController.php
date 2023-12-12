@@ -8,6 +8,8 @@ use App\Models\Product;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -112,5 +114,7 @@ class HomeController extends Controller
             $message->from($to_email, $to_name);
         });
     }
+
+
 
 }

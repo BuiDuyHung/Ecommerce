@@ -12,14 +12,14 @@ class District extends Model
 {
     use HasFactory;
 
-    protected $table = 'tbl_xaphuongthitran';
+    protected $table = 'tbl_quanhuyen';
     public $timestamps = false;
 
     protected $fillable = [
-        'xaid',
+        'maqh',
         'name',
         'type',
-        'matp',
+        'maqh',
     ];
 
     public function city(){
@@ -30,4 +30,6 @@ class District extends Model
     {
         return $this->hasMany(Commune::class);
     }
+
+
 }

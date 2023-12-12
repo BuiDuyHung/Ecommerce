@@ -13,7 +13,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="">Chọn tỉnh thành phố</label>
-                            <select name="city" id="city" class="form-control m-bot15 title-select city">
+                            <select name="city" id="city" class="form-control m-bot15 choose city">
                                 <option value="">---chọn tỉnh thành phố---</option>
                                 @foreach ($cities as $key => $item)
                                     <option value="{{ $item->matp }}"> {{ $item->name }} </option>
@@ -27,7 +27,7 @@
                         </div>
                         <div class="form-group">
                             <label for="">Chọn quận huyện</label>
-                            <select name="district" id="district" class="form-control m-bot15 title-select district">
+                            <select name="district" id="district" class="form-control m-bot15 choose district">
                                 <option value="">---chọn quận huyện</option>
 
                             </select>
@@ -39,7 +39,7 @@
                         </div>
                         <div class="form-group">
                             <label for="">Chọn xã phường</label>
-                            <select name="commune" id="commune" class="form-control m-bot15 title-select commune">
+                            <select name="commune" id="commune" class="form-control m-bot15 commune">
                                 <option value="">---chọn xã phường</option>
 
                             </select>

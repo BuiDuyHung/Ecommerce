@@ -83,7 +83,7 @@
                                 <?php
                                     }else {
                                 ?>
-                                    <li><a href="{{ route('home.loginCheckout') }}"><i class="fa fa-lock"></i> Đăng nhập </a></li>
+                                    <li><a href="{{ route('home.login') }}"><i class="fa fa-lock"></i> Đăng nhập </a></li>
                                 <?php
                                     }
                                 ?>

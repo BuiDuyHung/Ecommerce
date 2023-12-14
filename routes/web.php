@@ -140,4 +140,6 @@ Route::prefix('admin')->name('admin.')->group(function(){
     // Delivery
     Route::get('/delivery', [DeliveryController::class, 'delivery'])->name('delivery');
     Route::post('/select-delivery', [DeliveryController::class, 'selectDelivery'])->name('selectDelivery');
+    Route::post('/insert-delivery', [DeliveryController::class, 'insertDelivery'])->name('insertDelivery');
+    Route::post('/load-feeship', [DeliveryController::class, 'loadFeeship'])->name('loadFeeship');
 });

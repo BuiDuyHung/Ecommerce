@@ -9,12 +9,12 @@
             </header>
             <div class="panel-body">
                 <div class="position-center">
-                    <form role="form" action="" method="POST">
+                    <form role="form">
                         @csrf
                         <div class="form-group">
                             <label for="">Chọn tỉnh thành phố</label>
                             <select name="city" id="city" class="form-control m-bot15 choose city">
-                                <option value="">---chọn tỉnh thành phố---</option>
+                                <option value="0">---chọn tỉnh thành phố---</option>
                                 @foreach ($cities as $key => $item)
                                     <option value="{{ $item->matp }}"> {{ $item->name }} </option>
                                 @endforeach
@@ -28,7 +28,7 @@
                         <div class="form-group">
                             <label for="">Chọn quận huyện</label>
                             <select name="district" id="district" class="form-control m-bot15 choose district">
-                                <option value="">---chọn quận huyện</option>
+                                <option value="0">---chọn quận huyện</option>
 
                             </select>
                             @error('district')
@@ -40,7 +40,7 @@
                         <div class="form-group">
                             <label for="">Chọn xã phường</label>
                             <select name="commune" id="commune" class="form-control m-bot15 commune">
-                                <option value="">---chọn xã phường</option>
+                                <option value="0">---chọn xã phường</option>
 
                             </select>
                             @error('commune')
@@ -52,7 +52,7 @@
 
                         <div class="form-group">
                             <label>Phí vận chuyển</label>
-                            <input type="text" name="feeship" class="form-control title" id="brandProductTitle">
+                            <input type="text" name="feeship" class="form-control title feeship" id="brandProductTitle">
                             @error('feeship')
                                 <div class="invalid-feedback fix-noti">
                                     {{$message}} !
@@ -63,6 +63,12 @@
                         <button type="button" name="add_delivery" class="btn btn-info add_delivery">Thêm Vận Chuyển</button>
                     </form>
                 </div>
+
+                {{-- Load delivery --}}
+                <div id="load_delivery">
+
+                </div>
+
 
             </div>
         </section>

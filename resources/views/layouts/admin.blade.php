@@ -496,7 +496,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         $(document).ready(function(){
             fetch_delivery();
 
-            // load feeship
+            // load data feeship
             function fetch_delivery() {
                 var _token = $('input[name="_token"]').val();
 
@@ -511,6 +511,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     }
                 });
             }
+
+            // update feeship
+            $(document).on("blur",".feeship_edit", function(){
+                var feeship_id = $(this).data('feeship_id');
+                var feeship_value = $(this).text();
+                var _token = $('input[name="_token"]').val();
+
+                // Extract numeric value using regex
+                // var feeship_value = feeship_text.replace(/[^\d]/g, '');
+
+                $.ajax({
+                    url: "{{ route('admin.updateFeeship') }}",
+                    method: "POST",
+                    data: {
+                        feeship_id: feeship_id,
+                        feeship_value: feeship_value,
+                        _token: _token
+                    },
+                    success: function (data) {
+                        fetch_delivery();
+                    }
+                });
+            });
+
 
             // select city, district, commune
             $(".choose").on("change", function () {
@@ -534,7 +558,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         _token: _token
                     },
                     success: function (data) {
-                        $('#' + result).html(data);
+                        $('#'+result).html(data);
                     },
                     error: function (xhr, status, error) {
                         console.error("AJAX request failed:", status, error);
@@ -544,9 +568,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
             // add data feeship
             $(".add_delivery").click(function(){
-                var city_id = $(".city").val();
-                var district_id = $(".district").val();
-                var commune_id = $(".commune").val();
+                var city_id = $("#city").val();
+                var district_id = $("#district").val();
+                var commune_id = $("#commune").val();
                 var feeship = $(".feeship").val();
                 var _token = $('input[name="_token"]').val();
 
@@ -561,7 +585,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         _token: _token
                     },
                     success: function (data) {
-                        alert('Thêm phí vận chuyển thành công');
+                        fetch_delivery();
+                        // location.reload();
                     }
                 });
             })

@@ -22,11 +22,11 @@ class Feeship extends Model
     ];
 
     public function city(){
-        return $this->belongsTo(City::class, 'matp', 'matp')->withDefault();
+        return $this->belongsTo(City::class, 'matp', 'matp');
     }
 
     public function district(){
-        return $this->belongsTo(District::class, 'maqh', 'matp');
+        return $this->belongsTo(District::class, 'maqh', 'maqh');
     }
 
     public function commune(){

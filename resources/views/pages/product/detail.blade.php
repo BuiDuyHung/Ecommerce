@@ -92,12 +92,12 @@
                             <img src="{{ asset('frontend/images/product-details/rating.png') }}" alt="" />
                             <h1>{{ number_format($item->price) }} VNĐ</h1>
                             {{-- Gửi thông tin số lượng sản phẩm đến giỏ hàng --}}
-                            <form action="{{ route('home.showCart') }}" method="POST">
+                            <form action="" method="POST">
                                 @csrf
                                 <span>
                                     <label>Quantity:</label>
                                     <input name="quantity" type="number" min="1" value="1" />
-                                    <input name="productId_hidden" type="hidden" value="{{ $item->id }}" />
+                                    <input name="product_id" type="hidden" value="{{ $item->id }}" />
                                     <button type="submit" class="btn btn-fefault cart">
                                         <i class="fa fa-shopping-cart"></i>
                                         Thêm giỏ hàng

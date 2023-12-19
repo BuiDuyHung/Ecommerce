@@ -58,16 +58,17 @@
 								{{-- <li><a href="{{ route('home.loginCheckout') }}"><i class="fa fa-user"></i> Tài khoản </a></li> --}}
                                 <li><a href="#"><i class="fa fa-star"></i> Yêu thích</a></li>
 
+                                <li><a href="{{ route('home.checkout') }}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
                                 <?php
                                     $customer_id = Session::get('customer_id');
                                     $shipping_id = Session::get('shipping_id');
                                     if ($customer_id != NULL && $shipping_id != NULL){
                                 ?>
-                                    <li><a href="{{ route('home.payment') }}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
+
                                 <?php
                                     }else {
                                 ?>
-                                    <li><a href="{{ route('home.loginCheckout') }}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
+                                    {{-- <li><a href=""><i class="fa fa-crosshairs"></i> Thanh toán</a></li> --}}
                                 <?php
                                     }
                                 ?>
@@ -79,7 +80,7 @@
                                     $customer_id = Session::get('customer_id');
                                     if ($customer_id != NULL){
                                 ?>
-                                    <li><a href="{{ route('home.logoutCheckout') }}"><i class="fa fa-lock"></i> Đăng xuất </a></li>
+                                    <li><a href="{{ route('home.logout') }}"><i class="fa fa-lock"></i> Đăng xuất </a></li>
                                 <?php
                                     }else {
                                 ?>

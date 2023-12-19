@@ -26,7 +26,7 @@ class CheckoutController extends Controller
         $meta_title = "E-Shopper";
         $url_canonial = $request->url();
 
-        return view('pages.checkout.loginCheckout', compact('categories', 'brands', 'meta_desc', 'meta_keywords', 'meta_title', 'url_canonial'));
+        return view('pages.checkout.login', compact('categories', 'brands', 'meta_desc', 'meta_keywords', 'meta_title', 'url_canonial'));
     }
 
     // Thêm tài khoản người dùng

@@ -5,13 +5,13 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\ManaOrderController;
-use App\Http\Controllers\Admin\OrderAdController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\DeliveryController;
+
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\DeliveryController;
+// use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SearchController;
@@ -59,21 +59,25 @@ Route::prefix('/')->name('home.')->group(function(){
     Route::get('/thu-tuc-thanh-toan', [BillController::class, 'checkout'])->name('checkout');
     Route::post('/them-thong-tin-thanh-toan', [BillController::class, 'addCheckout'])->name('addCheckout');
     Route::get('/thanh-toan', [BillController::class, 'payment'])->name('payment');
+    Route::post('/select-delivery-home', [BillController::class, 'select_delivery_home'])->name('selectDeliveryHome');
+    Route::post('/calculate-feeship', [BillController::class, 'calculate_feeship'])->name('calculateFeeship');
+    Route::get('/del-feeship', [BillController::class, 'del_feeship'])->name('delFeeship');
 
     // User
     Route::get('/trang-ca-nhan', [UserController::class, 'show'])->name('userShow');
 
     // Checkout
-    Route::get('/dang-nhap-thanh-toan', [CheckoutController::class, 'login_checkout'])->name('loginCheckout');
-    Route::get('/thoat-dang-nhap-thanh-toan', [CheckoutController::class, 'logout_checkout'])->name('logoutCheckout');
-    Route::post('/them-nguoi-dung', [CheckoutController::class, 'addCustomer'])->name('addCustomer');
-    Route::post('/dang-nhap-nguoi-dung', [CheckoutController::class, 'login_customer'])->name('loginCustomer');
+    // Route::get('/dang-nhap-thanh-toan', [CheckoutController::class, 'login_checkout'])->name('loginCheckout');
+    // Route::get('/thoat-dang-nhap-thanh-toan', [CheckoutController::class, 'logout_checkout'])->name('logoutCheckout');
+    // Route::post('/them-nguoi-dung', [CheckoutController::class, 'addCustomer'])->name('addCustomer');
+    // Route::post('/dang-nhap-nguoi-dung', [CheckoutController::class, 'login_customer'])->name('loginCustomer');
 
     // login and register
     Route::get('/dang-nhap', [CustomerController::class, 'login'])->name('login');
     Route::post('/dang-nhap-nguoi-dung', [CustomerController::class, 'login_customer'])->name('loginCustomer2');
     Route::get('/dang-ky', [CustomerController::class, 'register'])->name('register');
     Route::post('/dang-ky-nguoi-dung', [CustomerController::class, 'add_customer'])->name('addCustomer2');
+    Route::get('/dang-xuat', [CustomerController::class, 'logout'])->name('logout');
 
     // Search
     Route::post('/tim-kiem', [SearchController::class, 'search'])->name('search');

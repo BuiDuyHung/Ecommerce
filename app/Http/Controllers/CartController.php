@@ -53,13 +53,16 @@ class CartController extends Controller
         $product = Product::where('id', $productId)->first();
 
         // shopping cart
-        $data['id'] = $product->id;
-        $data['qty'] = $quantity;
-        $data['name'] = $product->title;
-        $data['price'] = $product->price;
-        $data['weight'] = '28';
-        $data['options']['image'] = $product->image;
-        Cart::add($data);
+        // $data['id'] = $product->id;
+        // $data['qty'] = $quantity;
+        // $data['name'] = $product->title;
+        // $data['price'] = $product->price;
+        // $data['weight'] = '28';
+        // $data['options']['image'] = $product->image;
+        // Cart::add($data);
+
+
+        Cart::destroy();
 
         return redirect()->route('home.showCart');
     }
@@ -90,12 +93,14 @@ class CartController extends Controller
 
     public function addCartAjax(Request $request){
         $data = $request->all();
+        // dd($data);
         $session_id = substr(md5(microtime()),rand(0,26),5);
 
         $cart = Session::get('cart');
+
         if($cart == true){
             $is_avaiable = 0;
-            foreach($cart as $item){
+            foreach($cart as $key => $item){
                 if($item['product_id'] == $data['product_id']){
                     $is_avaiable++;
                 }
@@ -205,9 +210,9 @@ class CartController extends Controller
             Session::put('coupon', $coupons);
             Session::save();
 
-            return redirect()->route('home.showCartAjax')->with('msg', 'Thêm mã giảm giá thành công !');
+            return redirect()->route('home.checkout')->with('msg', 'Thêm mã giảm giá thành công !');
         } else {
-            return redirect()->route('home.showCartAjax')->with('error', 'Mã giảm giá không tồn tại. Vui lòng kiểm tra lại !');
+            return redirect()->route('home.checkout')->with('error', 'Mã giảm giá không tồn tại. Vui lòng kiểm tra lại !');
         }
         // Session::forget('coupon');
     }

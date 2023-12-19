@@ -1,15 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\City;
 use App\Models\District;
 use App\Models\Commune;
-
-use Illuminate\Http\Request;
-use App\Http\Requests\FeeshipRequest;
 use App\Models\Feeship;
-use PhpOption\Option;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class DeliveryController extends Controller
 {

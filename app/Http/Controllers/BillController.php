@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Shipping;
+use App\Models\City;
+use App\Models\District;
+use App\Models\Commune;
+use App\Models\Feeship;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,17 +20,12 @@ class BillController extends Controller
         $meta_title = "E-Shopper";
         $url_canonial = $request->url();
 
-        return view('pages.checkout.show', compact('meta_desc', 'meta_keywords', 'meta_title', 'url_canonial'));
+        $cities = City::orderby('matp', 'ASC')->get();
+
+        return view('pages.checkout.show', compact('meta_desc', 'meta_keywords', 'meta_title', 'url_canonial','cities'));
     }
 
     public function addCheckout(Request $request){
-        // $data = array();
-        // $data['name'] = $request->shipping_name;
-        // $data['address'] = $request->shipping_address;
-        // $data['email'] = $request->shipping_email;
-        // $data['phone'] = $request->shipping_phone;
-        // $data['notes'] = $request->shipping_notes;
-
         $data = [
             'name' => $request->shipping_name,
             'address' => $request->shipping_address,
@@ -45,6 +43,46 @@ class BillController extends Controller
 
     public function payment(){
         return view('pages.checkout.payment');
+    }
+
+    // Hàm chọn tỉnh thanh phố, quận huyện, xã phường
+    public function select_delivery_home(Request $request){
+        $data = $request->all();
+        $output = '';
+        if($data['action']){
+            if($data['action'] == 'city'){
+                $select_district = District::where('matp', $data['id'])->orderby('maqh', 'ASC')->get();
+                $output .= '<option>---chọn quận huyện---</option>';
+                foreach($select_district as $key => $district){
+                    $output.='<option value="'.$district->maqh.'">'.$district->name.'</option>';
+                }
+            }else{
+                $select_commune = Commune::where('maqh', $data['id'])->orderby('xaid', 'ASC')->get();
+                $output .= '<option>---chọn xã phường---</option>';
+                foreach($select_commune as $key => $commune){
+                    $output.='<option value="'.$commune->xaid.'">'.$commune->name.'</option>';
+                }
+            }
+        }
+        echo $output;
+    }
+
+    public function calculate_feeship(Request $request){
+        $data = $request->all();
+        if($data['city_id']){
+            $feeship = Feeship::where('matp', $data['city_id'])->where('maqh', $data['district_id'])->where('xaid', $data['commune_id'])->get();
+
+            foreach($feeship as $key => $fee){
+                Session::put('feeship', $fee->feeship);
+                Session::save();
+            }
+        }
+    }
+
+    public function del_feeship(){
+        Session::forget('feeship');
+
+        return redirect()->route('home.checkout')->with('msg', 'Xóa phí vận chuyển thành công');
     }
 
 }

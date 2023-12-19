@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 
 class CustomerController extends Controller
 {
+    // Hàm chuyển đến trang đăng nhập người dùng
     public function login(Request $request){
         // lấy tất cả các thể loại sản phẩm
         $categories = Category::where('status', '1')->get();
@@ -27,6 +28,29 @@ class CustomerController extends Controller
         return view('pages.checkout.login', compact('categories', 'brands', 'meta_desc', 'meta_keywords', 'meta_title', 'url_canonial'));
     }
 
+    // Hàm đăng xuất người dùng
+    public function logout(){
+        Session::flush();
+        return redirect()->route('home.index');
+    }
+
+
+    // Hàm đăng nhập người dùng
+    public function login_customer(Request $request){
+        $email = $request->email_account;
+        $password = md5($request->password_account);
+
+        $customer = DB::table('tbl_customers')->where('email', $email)->where('password', $password)->first();
+        if($customer){
+            Session::put('customer_id', $customer->id);
+            return redirect()->route('home.checkout');
+        }else{
+            return redirect()->route('home.loginCustomer');
+        }
+
+    }
+
+    // Hàm chuyển đến trang đăng ký người dùng
     public function register(Request $request){
         // lấy tất cả các thể loại sản phẩm
         $categories = Category::where('status', '1')->get();
@@ -42,26 +66,7 @@ class CustomerController extends Controller
         return view('pages.checkout.register', compact('categories', 'brands', 'meta_desc', 'meta_keywords', 'meta_title', 'url_canonial'));
     }
 
-       // Hàm đăng nhập
-    public function login_customer(Request $request){
-        $email = $request->email_account;
-        $password = md5($request->password_account);
-
-        $customer = DB::table('tbl_customers')->where('email', $email)->where('password', $password)->first();
-        if($customer){
-            Session::put('customer_id', $customer->id);
-            return redirect()->route('home.checkout');
-        }else{
-            return redirect()->route('home.loginCustomer');
-        }
-
-    }
-
-    // Hàm đăng ký
-    public function registerCustomer(){
-
-    }
-
+    // Hàm đăng ký thêm người dùng
     public function add_customer(Request $request){
         $data = [
             'name' => $request->customer_name,

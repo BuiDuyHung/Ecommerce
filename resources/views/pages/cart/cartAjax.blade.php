@@ -82,10 +82,13 @@
                                             // print_r(Session::get('cart'));
                                             // echo '</pre>';
                                             $total = 0;
+                                            $carts = Session::get('cart');
+                                            // dd($carts);
                                         @endphp
 
                                         @if (Session::get('cart'))
-                                            @foreach (Session::get('cart') as $item)
+
+                                            @foreach ($carts as $item)
                                                 @php
                                                     $subtotal =  $item['product_price']*$item['product_qty'];
                                                     $total += $subtotal;
@@ -130,7 +133,7 @@
                                             <tr>
                                                 <td>
                                                     <input type="submit" value="Cập nhật giỏ hàng" name="update_qty" class="btn check_out">
-                                                    <a onclick="return confirm('Bạn có chắc chắn muốn xóa mã giảm giá này ?')" class="btn btn-default check_out" href="{{ route('home.deleteCoupon') }}">Xóa mã giảm giá</a>
+                                                    {{-- <a onclick="return confirm('Bạn có chắc chắn muốn xóa mã giảm giá này ?')" class="btn btn-default check_out" href="{{ route('home.deleteCoupon') }}">Xóa mã giảm giá</a> --}}
                                                     <a onclick="return confirm('Bạn có chắc chắn muốn xóa tất cả sản phẩm trong giỏ hàng ?')" class="btn btn-default check_out" href="{{ route('home.deleteAllAjax') }}">Xóa tất cả</a>
                                                 </td>
                                             </tr>
@@ -146,7 +149,7 @@
 
                                 </form>
 
-                                @if (Session::get('cart'))
+                                {{-- @if (Session::get('cart'))
                                     <td>
                                         <br>
                                         <form action="{{ route('home.checkCoupon') }}" method="POST">
@@ -157,70 +160,12 @@
                                             </div>
                                         </form>
                                     </td>
-                                @endif
+                                @endif --}}
 
                             </table>
                         </div>
                     </div>
                 </section> <!--/#cart_items-->
-
-                @if (Session::get('cart'))
-                    <section id="do_action">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="total_area">
-                                        <ul>
-                                            <li>Tổng :<span>{{ number_format($total) }} VNĐ</span></li>
-
-                                            @if (Session::get('coupon'))
-                                            @php
-                                                $latestCoupon = Session::get('coupon');
-                                                // echo '<pre>';
-                                                //     print_r($latestCoupon);
-                                                // echo '</pre>';
-                                            @endphp
-                                                <li>
-                                                    @foreach ($latestCoupon as $key => $coupon)
-                                                        @if ($coupon['coupon_condition'] == 1)
-                                                            <p>Mã giảm giá : {{ $coupon['coupon_code'] }}</p>
-                                                            <p>Giá trị mã giảm giá : {{ $coupon['coupon_value'] }} %</p>
-                                                            <p>
-                                                                @php
-                                                                    $totalCoupon = ($total * $coupon['coupon_value']) / 100;
-                                                                @endphp
-                                                            </p>
-                                                            <p>Tiền sau khi áp mã: {{ number_format($total - $totalCoupon) }} VNĐ</p>
-                                                        @endif
-
-                                                        @if ($coupon['coupon_condition'] == 2)
-                                                            <p>Mã giảm giá : {{ $coupon['coupon_code'] }} <br></p>
-                                                            <p>Giá trị mã giảm giá : {{ $coupon['coupon_value'] }} VNĐ</p>
-                                                            <p>
-                                                                @php
-                                                                    $totalCoupon = $total - $coupon['coupon_value'];
-                                                                @endphp
-                                                            </p>
-                                                            <p>Tiền sau khi áp mã: {{ number_format($totalCoupon) }} VNĐ</p>
-                                                        @endif
-                                                    @endforeach
-                                                </li>
-                                            @endif
-
-                                            <li>Tiền sau khi áp mã :<span> VNĐ</span></li>
-                                            {{-- <li>Thuế :<span> VNĐ</span></li>
-                                            <li>Phí vận chuyển :<span>Free</span></li>
-                                            <li>Thành tiền :<span> VNĐ</span></li> --}}
-                                        </ul>
-
-                                        <a class="btn btn-default check_out" style="float: right;" href="{{ route('home.checkout') }}">Thanh Toán</a>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section><!--/#do_action-->
-                @endif
 
             </div>
         </div>

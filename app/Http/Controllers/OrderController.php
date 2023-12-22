@@ -101,7 +101,7 @@ class OrderController extends Controller
     public function confirm_order(Request $request){
         $data = $request->all();
 
-        $shipping = new Shipping();
+        $shipping = new Shipping;
         $shipping->name = $data['shipping_name'];
         $shipping->address = $data['shipping_address'];
         $shipping->phone = $data['shipping_phone'];
@@ -113,12 +113,30 @@ class OrderController extends Controller
         $shipping_id = $shipping->id;
         $order_code = substr(md5(microtime()), rand(0,26), 5);
 
-        $order = new Order();
+        $order = new Order;
         $order->customer_id = Session::get('customer_id');
         $order->shipping_id = $shipping_id;
         $order->code = $order_code;
         $order->status = 1;
         $order->save();
 
+
+        if(Session::get('cart')){
+            foreach(Session::get('cart') as $key => $cart){
+                $order_detail = new OrderDetail;
+                $order_detail->order_code = $order_code;
+                $order_detail->product_id = $cart['product_id'];
+                $order_detail->product_title = $cart['product_title'];
+                $order_detail->product_price = $cart['product_price'];
+                $order_detail->product_sale_quantity = $cart['product_qty'];
+                $order_detail->product_coupon = $data['order_coupon'];
+                $order_detail->product_feeship = $data['order_feeship'];
+                $order_detail->save();
+            }
+        }
+
+        Session::forget('cart');
+        Session::forget('coupon');
+        Session::forget('feeship');
     }
 }

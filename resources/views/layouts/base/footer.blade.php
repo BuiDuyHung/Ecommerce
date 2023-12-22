@@ -112,38 +112,51 @@
     $(document).ready(function(){
         $('.send_order').click(function(e){
             // e.preventDefault();
-
-            var shipping_email = $('.shipping_email').val();
-            var shipping_name = $('.shipping_name').val();
-            var shipping_address = $('.shipping_address').val();
-            var shipping_phone = $('.shipping_phone').val();
-            var shipping_notes = $('.shipping_notes').val();
-            var order_feeship = $('.order_feeship').val();
-            var order_coupon = $('.order_coupon').val();
-            var payment_select = $('.payment_select').val();
-
-            var _token = $('input[name = "_token"]').val();
-
-            $.ajax({
-                url: "{{ route('home.confirmOrder') }}",
-                method: "POST",
-                data:{
-                    shipping_email: shipping_email,
-                    shipping_name: shipping_name,
-                    shipping_address: shipping_address,
-                    shipping_phone: shipping_phone,
-                    shipping_notes: shipping_notes,
-                    shipping_notes: shipping_notes,
-                    payment_select: payment_select,
-                    order_coupon: order_coupon,
-
-                    _token: _token
+            swal({
+                title: "Xác nhận đơn hàng",
+                text: "Bạn có chắc chắn xác nhận đặt hàng?",
+                showCancelButton: true,
+                cancelButtonText: "Hủy",
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Xác nhận",
+                closeOnConfirm: false,
                 },
-                success: function(){
-                    alert('Đặt hàng thành công !');
-                    location.reload();
-                }
+                function(){
+                    var shipping_email = $('.shipping_email').val();
+                    var shipping_name = $('.shipping_name').val();
+                    var shipping_address = $('.shipping_address').val();
+                    var shipping_phone = $('.shipping_phone').val();
+                    var shipping_notes = $('.shipping_notes').val();
+                    var order_feeship = $('.order_feeship').val();
+                    var order_coupon = $('.order_coupon').val();
+                    var payment_select = $('.payment_select').val();
+                    var _token = $('input[name = "_token"]').val();
+
+                    $.ajax({
+                        url: "{{ route('home.confirmOrder') }}",
+                        method: "POST",
+                        data:{
+                            shipping_email: shipping_email,
+                            shipping_name: shipping_name,
+                            shipping_address: shipping_address,
+                            shipping_phone: shipping_phone,
+                            shipping_notes: shipping_notes,
+                            payment_select: payment_select,
+                            order_feeship: order_feeship,
+                            order_coupon: order_coupon,
+                            _token: _token
+                        },
+                        success: function(){
+                            swal("Thành công!", "Đơn hàng của bạn đã được gửi thành công.", "success");
+                        }
+                    });
+
+                    window.setTimeout(function(){
+                        location.reload();
+                    }, 2000);
             });
+
+
         });
     })
 </script>

@@ -136,6 +136,16 @@
                                                     {{-- <a onclick="return confirm('Bạn có chắc chắn muốn xóa mã giảm giá này ?')" class="btn btn-default check_out" href="{{ route('home.deleteCoupon') }}">Xóa mã giảm giá</a> --}}
                                                     <a onclick="return confirm('Bạn có chắc chắn muốn xóa tất cả sản phẩm trong giỏ hàng ?')" class="btn btn-default check_out" href="{{ route('home.deleteAllAjax') }}">Xóa tất cả</a>
                                                 </td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>
+                                                    @if (Session::get('customer_id') != NULL)
+                                                        <a class="btn btn-default check_out" style="float: right" href="{{ route('home.checkout') }}">Đặt hàng</a>
+                                                    @else
+                                                        <a class="btn btn-default check_out" href="{{ route('home.login') }}">Bạn cần đăng nhập để đặt hàng</a>
+                                                    @endif
+                                                </td>
                                             </tr>
                                         @else
                                             <tr>

@@ -97,8 +97,15 @@
                                 <span>
                                     <label>Quantity:</label>
                                     <input name="quantity" type="number" min="1" value="1" />
-                                    <input name="product_id" type="hidden" value="{{ $item->id }}" />
-                                    <button type="submit" class="btn btn-fefault cart">
+                                    {{-- <input name="product_id" type="hidden" value="{{ $item->id }}" /> --}}
+
+                                    <input type="hidden" value="{{ $item->id }}" class="product_id_{{ $item->id }}">
+                                    <input type="hidden" value="{{ $item->title }}" class="product_title_{{ $item->id }}">
+                                    <input type="hidden" value="{{ $item->image }}" class="product_image_{{ $item->id }}">
+                                    <input type="hidden" value="{{ $item->price }}" class="product_price_{{ $item->id }}">
+                                    <input type="hidden" value="1" class="product_qty_{{ $item->id }}">
+
+                                    <button type="button" name="add-to-cart" class="btn btn-fefault cart add-to-cart" data-id_product="{{ $item->id }}">
                                         <i class="fa fa-shopping-cart"></i>
                                         Thêm giỏ hàng
                                     </button>

@@ -23,10 +23,10 @@
 
         </div><!--/register-req--> --}}
 
-        <div class="shopper-informations">
-            <div class="row fix-bill">
+        <div class="shopper-informations fix-bill-top">
+            <div class="row">
                 <div class="col-sm-12 clearfix">
-                    <h2>Xem lại giỏ hàng</h2>
+                    <h2>>> Xem lại giỏ hàng <<</h2>
                     <br>
                     <div class="table-responsive cart_info">
                         @if(session('msg'))
@@ -132,182 +132,203 @@
             </div>
         </div>
 
-        <div class="review-payment">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="bill-to">
-                            <h2>Điền thông tin gửi hàng</h2>
-                            <div class="form-one">
-                                <form action="{{ route('home.addCheckout') }}" method="POST">
-                                    @csrf
-                                    <input type="text" name="shipping_email" placeholder="Email *">
-                                    <input type="text" name="shipping_name" placeholder="Họ và tên *">
-                                    <input type="text" name="shipping_address" placeholder="Địa chỉ *">
-                                    <input type="text" name="shipping_phone" placeholder="Phone *">
-                                    <textarea name="shipping_notes" placeholder="Ghi chú thông tin đơn hàng của bạn" rows="5"></textarea>
-                                    <input type="submit" value="Xác nhận đơn hàng" name="send_order" class="btn btn-primary">
-                                    <br>
-                                </form>
+        <div class="review-payment fix-bill-bottom">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="bill-to">
+                        <h2>------ Điền thông tin gửi hàng ------</h2>
+                        <div class="form-one">
+                            <form>
+                                @csrf
+                                <input type="text" name="shipping_email" class="shipping_email" placeholder="Email *">
+                                <input type="text" name="shipping_name" class="shipping_name" placeholder="Họ và tên *">
+                                <input type="text" name="shipping_address" class="shipping_address" placeholder="Địa chỉ *">
+                                <input type="text" name="shipping_phone" class="shipping_phone" placeholder="Phone *">
+                                <textarea name="shipping_notes" class="shipping_notes" placeholder="Ghi chú thông tin đơn hàng của bạn" rows="5"></textarea>
 
-                                <br>
+                                @if (Session::get('feeship'))
+                                    <input type="hidden" name="order_feeship" class="order_feeship" value="{{ Session::get('feeship') }}">
+                                @else
+                                    <input type="hidden" name="order_feeship" class="order_feeship" value="10000">
+                                @endif
 
-                                <form role="form">
-                                    @csrf
-                                    <div class="form-group">
-                                        <label for="">Chọn tỉnh thành phố</label>
-                                        <select name="city" id="city" class="form-control m-bot15 choose city">
-                                            <option value="0">---chọn tỉnh thành phố---</option>
-                                            @foreach ($cities as $key => $item)
-                                                <option value="{{ $item->matp }}"> {{ $item->name }} </option>
-                                            @endforeach
-                                        </select>
-                                        @error('city')
-                                            <div class="invalid-feedback fix-noti">
-                                                {{$message}} !
-                                            </div>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Chọn quận huyện</label>
-                                        <select name="district" id="district" class="form-control m-bot15 choose district">
-                                            <option value="0">---chọn quận huyện---</option>
+                                @if (Session::get('coupon'))
+                                    @foreach (Session::get('coupon') as $key => $item)
+                                        <input type="hidden" name="order_coupon" class="order_coupon" value="{{ $item['coupon_code'] }}">
+                                    @endforeach
+                                @else
+                                    <input type="hidden" name="order_coupon" class="order_coupon" value="Không có mã giảm giá">
+                                @endif
 
-                                        </select>
-                                        @error('district')
-                                            <div class="invalid-feedback fix-noti">
-                                                {{$message}} !
-                                            </div>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Chọn xã phường</label>
-                                        <select name="commune" id="commune" class="form-control m-bot15 commune">
-                                            <option value="0">---chọn xã phường---</option>
+                                <br><br>
 
-                                        </select>
-                                        @error('commune')
-                                            <div class="invalid-feedback fix-noti">
-                                                {{$message}} !
-                                            </div>
-                                        @enderror
-                                    </div>
+                                <div class="form-group">
+                                    <label for="">Chọn hình thức thanh toán</label>
+                                    <select name="payment_select" id="payment_select" class="form-control m-bot15 payment_select">
+                                        <option value="0">Qua chuyển khoản</option>
+                                        <option value="1">Tiền mặt</option>
+                                    </select>
+                                </div>
 
-                                    <input type="button" value="Tính phí vận chuyển" name="send_order" class="btn btn-primary calculate_delivery">
-                                </form>
+                                <input type="button" value="Xác nhận đơn hàng" name="send_order" class="btn btn-primary send_order">
+                            </form>
 
-                            </div>
+                            <br><br>
+
+                            <form role="form">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="">Chọn tỉnh thành phố</label>
+                                    <select name="city" id="city" class="form-control m-bot15 choose city">
+                                        <option value="0">---chọn tỉnh thành phố---</option>
+                                        @foreach ($cities as $key => $item)
+                                            <option value="{{ $item->matp }}"> {{ $item->name }} </option>
+                                        @endforeach
+                                    </select>
+                                    @error('city')
+                                        <div class="invalid-feedback fix-noti">
+                                            {{$message}} !
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Chọn quận huyện</label>
+                                    <select name="district" id="district" class="form-control m-bot15 choose district">
+                                        <option value="0">---chọn quận huyện---</option>
+
+                                    </select>
+                                    @error('district')
+                                        <div class="invalid-feedback fix-noti">
+                                            {{$message}} !
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Chọn xã phường</label>
+                                    <select name="commune" id="commune" class="form-control m-bot15 commune">
+                                        <option value="0">---chọn xã phường---</option>
+
+                                    </select>
+                                    @error('commune')
+                                        <div class="invalid-feedback fix-noti">
+                                            {{$message}} !
+                                        </div>
+                                    @enderror
+                                </div>
+
+                                <input type="button" value="Tính phí vận chuyển" name="send_order" class="btn btn-primary calculate_delivery">
+                            </form>
+
                         </div>
                     </div>
+                </div>
 
-                    <div class="col-sm-6">
-                        <h2>Thông tin hóa đơn</h2>
+                <div class="col-sm-6">
+                    <h2>------ Thông tin hóa đơn ------</h2>
 
-                        @if (Session::get('cart'))
-                            <td>
-                                <br>
-                                <form action="{{ route('home.checkCoupon') }}" method="POST">
-                                    @csrf
-                                    <div class="fix-input-coupon">
-                                        <input type="text" class="form-control" name="coupon" placeholder="Nhập mã giảm giá">
-                                        <input type="submit" class="btn btn-fix" name="check-coupon" value="Tính mã giảm giá">
-                                    </div>
-                                </form>
-                            </td>
-                        @endif
-                        <br>
-
-                        @if (Session::get('cart'))
-                            <section id="do_action">
-                                <div class="total_area">
-                                    <ul>
-                                        <li>Tổng tạm thời :<span>{{ number_format($total,0,',','.') }} VNĐ</span></li>
-
-                                        @if (Session::get('coupon'))
-                                            @php
-                                                $latestCoupon = Session::get('coupon');
-                                                // echo '<pre>';
-                                                //     print_r($latestCoupon);
-                                                // echo '</pre>';
-                                            @endphp
-
-                                            <li>
-                                                @foreach ($latestCoupon as $key => $coupon)
-                                                    @if ($coupon['coupon_condition'] == 1)
-                                                        <p>Mã giảm giá : <span>{{ $coupon['coupon_code'] }}</span> </p>
-
-                                                        <p>
-                                                            @php
-                                                                $totalCoupon = ($total * $coupon['coupon_value']) / 100;
-                                                            @endphp
-                                                        </p>
-
-                                                        <p>Giá trị mã giảm giá : <span>{{ $coupon['coupon_value'] }} % (= {{ number_format($totalCoupon,0,',','.') }} VNĐ)</span> </p>
-
-                                                        <p>
-                                                            @php
-                                                                $total_after_coupon = $total - $totalCoupon;
-                                                            @endphp
-                                                            {{-- Tiền sau khi áp mã : <span>{{ number_format($total - $totalCoupon,0,',','.') }} VNĐ</span> --}}
-                                                        </p>
-                                                    @endif
-
-                                                    @if ($coupon['coupon_condition'] == 2)
-                                                        <p>Mã giảm giá : <span>{{ $coupon['coupon_code'] }}</span>  <br></p>
-                                                        <p>Giá trị mã giảm giá : <span>{{ $coupon['coupon_value'] }} VNĐ</span> </p>
-                                                        <p>
-                                                            @php
-                                                                $totalCoupon = $total - $coupon['coupon_value'];
-                                                            @endphp
-                                                        </p>
-                                                        {{-- <p>Tiền sau khi áp mã: <span>{{ number_format($totalCoupon,0,',','.') }} VNĐ</span> </p> --}}
-                                                    @endif
-                                                @endforeach
-                                            </li>
-
-                                            @if (Session::get('feeship'))
-                                                <li>
-                                                    <a onclick="return confirm('Bạn có chắc chắn muốn phí vận chuyển này ?')" class="cart_quantity_delete" href="{{ route('home.delFeeship') }}"><i class="fa fa-times"></i></a>
-
-                                                    Phí vận chuyển : <span>{{ number_format(Session::get('feeship'),0,',','.') }} VNĐ</span>
-                                                    @php
-                                                        $total_after_feeship = $total - Session::get('feeship');
-                                                    @endphp
-                                                </li>
-                                            @endif
-
-                                            @php
-                                                if (Session::get('feeship') && !Session::get('coupon')) {
-                                                    $total_after = $total_after_feeship;
-                                                }elseif(!Session::get('feeship') && Session::get('coupon')) {
-                                                    $total_after = $total_after_coupon;
-                                                }elseif (Session::get('feeship') && Session::get('coupon')) {
-                                                    $total_after = $total_after_coupon;
-                                                    $total_after = $total_after - Session::get('feeship');
-                                                }elseif (!Session::get('feeship') && !Session::get('coupon')) {
-                                                    $total_after = $total;
-                                                }
-                                            @endphp
-                                            <li>Tổng thanh toán : <span>{{ number_format($total_after,0,',','.') }} VNĐ</span></li>
-
-                                        @endif
-
-
-                                        {{-- <li>Thuế :<span> VNĐ</span></li>
-                                        <li>Phí vận chuyển :<span>Free</span></li>
-                                        <li>Thành tiền :<span> VNĐ</span></li> --}}
-                                    </ul>
-
-                                    <a class="btn btn-default check_out" style="float: right;" href="{{ route('home.checkout') }}">Thanh Toán</a>
-                                    <a onclick="return confirm('Bạn có chắc chắn muốn xóa mã giảm giá này ?')" style="float: right;" class="btn btn-default check_out" href="{{ route('home.deleteCoupon') }}">Xóa mã giảm giá</a>
-
+                    @if (Session::get('cart'))
+                        <td>
+                            <br>
+                            <form action="{{ route('home.checkCoupon') }}" method="POST">
+                                @csrf
+                                <div class="fix-input-coupon">
+                                    <input type="text" class="form-control" name="coupon" placeholder="Nhập mã giảm giá">
+                                    <input type="submit" class="btn btn-fix" name="check-coupon" value="Tính mã giảm giá">
                                 </div>
-                            </section><!--/#do_action-->
-                        @endif
-                    </div>
+                            </form>
+                        </td>
+                    @endif
+                    <br>
+
+                    @if (Session::get('cart'))
+                        <section id="do_action">
+                            <div class="total_area">
+                                <ul>
+                                    <li>Tổng tạm thời :<span>{{ number_format($total,0,',','.') }} VNĐ</span></li>
+
+                                    @if (Session::get('coupon'))
+                                        @php
+                                            $latestCoupon = Session::get('coupon');
+                                            // echo '<pre>';
+                                            //     print_r($latestCoupon);
+                                            // echo '</pre>';
+                                        @endphp
+
+                                        <li>
+                                            @foreach ($latestCoupon as $key => $coupon)
+                                                @if ($coupon['coupon_condition'] == 1)
+                                                    <p>Mã giảm giá : <span>{{ $coupon['coupon_code'] }}</span> </p>
+
+                                                    <p>
+                                                        @php
+                                                            $totalCoupon = ($total * $coupon['coupon_value']) / 100;
+                                                        @endphp
+                                                    </p>
+
+                                                    <p>Giá trị mã giảm giá : <span>{{ $coupon['coupon_value'] }} % (= {{ number_format($totalCoupon,0,',','.') }} VNĐ)</span> </p>
+
+                                                    <p>
+                                                        @php
+                                                            $total_after_coupon = $total - $totalCoupon;
+                                                        @endphp
+                                                        {{-- Tiền sau khi áp mã : <span>{{ number_format($total - $totalCoupon,0,',','.') }} VNĐ</span> --}}
+                                                    </p>
+                                                @endif
+
+                                                @if ($coupon['coupon_condition'] == 2)
+                                                    <p>Mã giảm giá : <span>{{ $coupon['coupon_code'] }}</span>  <br></p>
+                                                    <p>Giá trị mã giảm giá : <span>{{ number_format($coupon['coupon_value'],0,',','.') }} VNĐ</span> </p>
+                                                    <p>
+                                                        @php
+                                                            $total_after_coupon = $total - $coupon['coupon_value'];
+                                                        @endphp
+                                                    </p>
+                                                    {{-- <p>Tiền sau khi áp mã: <span>{{ number_format($totalCoupon,0,',','.') }} VNĐ</span> </p> --}}
+                                                @endif
+                                            @endforeach
+                                        </li>
+
+                                    @endif
+
+                                    @if (Session::get('feeship'))
+                                        <li>
+                                            <a onclick="return confirm('Bạn có chắc chắn muốn phí vận chuyển này ?')" class="cart_quantity_delete" href="{{ route('home.delFeeship') }}"><i class="fa fa-times"></i></a>
+
+                                            Phí vận chuyển : <span>{{ number_format(Session::get('feeship'),0,',','.') }} VNĐ</span>
+                                            @php
+                                                $total_after_feeship = $total - Session::get('feeship');
+                                            @endphp
+                                        </li>
+                                    @endif
+
+                                    @php
+                                        if (Session::get('feeship') && !Session::get('coupon')) {
+                                            $total_after = $total_after_feeship;
+                                        }elseif(!Session::get('feeship') && Session::get('coupon')) {
+                                            $total_after = $total_after_coupon;
+                                        }elseif (Session::get('feeship') && Session::get('coupon')) {
+                                            $total_after = $total_after_coupon;
+                                            $total_after = $total_after - Session::get('feeship');
+                                        }elseif (!Session::get('feeship') && !Session::get('coupon')) {
+                                            $total_after = $total;
+                                        }
+                                    @endphp
+                                    <li>Tổng thanh toán : <span>{{ number_format($total_after,0,',','.') }} VNĐ</span></li>
+
+
+                                    {{-- <li>Thuế :<span> VNĐ</span></li>
+                                    <li>Phí vận chuyển :<span>Free</span></li>
+                                    <li>Thành tiền :<span> VNĐ</span></li> --}}
+                                </ul>
+
+                                <a class="btn btn-default check_out" style="float: right;" href="{{ route('home.checkout') }}">Thanh Toán</a>
+                                <a onclick="return confirm('Bạn có chắc chắn muốn xóa mã giảm giá này ?')" style="float: right;" class="btn btn-default check_out" href="{{ route('home.deleteCoupon') }}">Xóa mã giảm giá</a>
+
+                            </div>
+                        </section><!--/#do_action-->
+                    @endif
                 </div>
             </div>
-
         </div>
     </div>
 </section> <!--/#cart_items-->

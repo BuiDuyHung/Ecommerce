@@ -55,24 +55,10 @@
 					<div class="col-sm-9">
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
-								{{-- <li><a href="{{ route('home.loginCheckout') }}"><i class="fa fa-user"></i> Tài khoản </a></li> --}}
+								<li><a href=""><i class="fa fa-user"></i> Tài khoản </a></li>
                                 <li><a href="#"><i class="fa fa-star"></i> Yêu thích</a></li>
 
-                                <li><a href="{{ route('home.checkout') }}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
-                                <?php
-                                    $customer_id = Session::get('customer_id');
-                                    $shipping_id = Session::get('shipping_id');
-                                    if ($customer_id != NULL && $shipping_id != NULL){
-                                ?>
-
-                                <?php
-                                    }else {
-                                ?>
-                                    {{-- <li><a href=""><i class="fa fa-crosshairs"></i> Thanh toán</a></li> --}}
-                                <?php
-                                    }
-                                ?>
-
+                                {{-- <li><a href="{{ route('home.checkout') }}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li> --}}
 
 								<li><a href="{{ route('home.showCartAjax') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng </a></li>
 
@@ -112,9 +98,9 @@
 							<ul class="nav navbar-nav collapse navbar-collapse">
 								<li><a href="{{ route('home.index') }}" class="active">Trang chủ</a></li>
 								<li class="dropdown"><a href="#">Sản phẩm<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
+                                    {{-- <ul role="menu" class="sub-menu">
                                         <li><a href="shop.html">Apple</a></li>
-                                    </ul>
+                                    </ul> --}}
                                 </li>
 								<li class="dropdown"><a href="#">Tin tức</a></li>
 								<li><a href="{{ route('home.showCartAjax') }}">Giỏ hàng</a></li>

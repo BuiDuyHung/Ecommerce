@@ -8,6 +8,15 @@
                 <div class="login-form"><!--login form-->
                     <h2>Đăng nhập tài khoản</h2>
                     <br>
+                    @if(session('msg'))
+                        <div class="alert alert-success text-center" id="notification">
+                            {{session('msg')}}
+                        </div>
+                    @elseif (session('error'))
+                        <div class="alert alert-danger text-center" id="notification">
+                            {{session('error')}}
+                        </div>
+                    @endif
                     <form action="{{ route('home.loginCustomer2') }}" method="POST">
                         @csrf
                         <input type="text" name="email_account" placeholder="Email" />

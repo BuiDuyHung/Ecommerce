@@ -18,7 +18,8 @@ class Shipping extends Model
         'address',
         'phone',
         'email',
-        'notes'
+        'notes',
+        'method'
     ];
 
     public function orders()

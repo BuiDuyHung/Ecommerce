@@ -71,11 +71,19 @@ class BillController extends Controller
         $data = $request->all();
         if($data['city_id']){
             $feeship = Feeship::where('matp', $data['city_id'])->where('maqh', $data['district_id'])->where('xaid', $data['commune_id'])->get();
-
-            foreach($feeship as $key => $fee){
-                Session::put('feeship', $fee->feeship);
-                Session::save();
+            if($feeship){
+                $count_feeship = $feeship->count();
+                if($count_feeship > 0){
+                    foreach($feeship as $key => $fee){
+                        Session::put('feeship', $fee->feeship);
+                        Session::save();
+                    }
+                }else{
+                    Session::put('feeship', 20000);
+                    Session::save();
+                }
             }
+
         }
     }
 
@@ -84,5 +92,7 @@ class BillController extends Controller
 
         return redirect()->route('home.checkout')->with('msg', 'Xóa phí vận chuyển thành công');
     }
+
+
 
 }

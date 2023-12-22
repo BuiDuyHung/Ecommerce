@@ -45,7 +45,7 @@ class CustomerController extends Controller
             Session::put('customer_id', $customer->id);
             return redirect()->route('home.checkout');
         }else{
-            return redirect()->route('home.loginCustomer');
+            return redirect()->route('home.login')->with('error', 'Tài khoản hoặc mật khẩu chưa đúng. Vui lòng kiểm tra lại !');
         }
 
     }

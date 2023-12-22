@@ -2617,6 +2617,10 @@ h2.title {
     display: flex;
 }
 
-.fix-bill{
-    margin-top: -60px;
+.fix-bill-top{
+    margin-top: -62px;
+}
+
+.fix-bill-bottom{
+    margin-bottom: 90px;
 }

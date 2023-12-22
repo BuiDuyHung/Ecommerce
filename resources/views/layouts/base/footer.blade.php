@@ -107,49 +107,90 @@
     });
 </script>
 
+{{-- Bill --}}
+<script>
+    $(document).ready(function(){
+        $('.send_order').click(function(e){
+            // e.preventDefault();
+
+            var shipping_email = $('.shipping_email').val();
+            var shipping_name = $('.shipping_name').val();
+            var shipping_address = $('.shipping_address').val();
+            var shipping_phone = $('.shipping_phone').val();
+            var shipping_notes = $('.shipping_notes').val();
+            var order_feeship = $('.order_feeship').val();
+            var order_coupon = $('.order_coupon').val();
+            var payment_select = $('.payment_select').val();
+
+            var _token = $('input[name = "_token"]').val();
+
+            $.ajax({
+                url: "{{ route('home.confirmOrder') }}",
+                method: "POST",
+                data:{
+                    shipping_email: shipping_email,
+                    shipping_name: shipping_name,
+                    shipping_address: shipping_address,
+                    shipping_phone: shipping_phone,
+                    shipping_notes: shipping_notes,
+                    shipping_notes: shipping_notes,
+                    payment_select: payment_select,
+                    order_coupon: order_coupon,
+
+                    _token: _token
+                },
+                success: function(){
+                    alert('Đặt hàng thành công !');
+                    location.reload();
+                }
+            });
+        });
+    })
+</script>
+
 {{-- Cart by Ajax --}}
 <script>
     $(document).ready(function(){
-            $('.add-to-cart').click(function(e){
-                e.preventDefault();
+        $('.add-to-cart').click(function(e){
+            e.preventDefault();
 
-                var id = $(this).data('id_product');
-                var product_id = $('.product_id_' + id).val();
-                var product_title = $('.product_title_' + id).val();
-                var product_image = $('.product_image_' + id).val();
-                var product_price = $('.product_price_' + id).val();
-                var product_qty = $('.product_qty_' + id).val();
-                var _token = $('input[name = "_token"]').val();
+            var id = $(this).data('id_product');
+            var product_id = $('.product_id_' + id).val();
+            var product_title = $('.product_title_' + id).val();
+            var product_image = $('.product_image_' + id).val();
+            var product_price = $('.product_price_' + id).val();
+            var product_qty = $('.product_qty_' + id).val();
+            var _token = $('input[name = "_token"]').val();
 
-                $.ajax({
-                    url: "{{ route('home.addCartAjax') }}",
-                    method: "POST",
-                    data:{
-                        product_id: product_id,
-                        product_title: product_title,
-                        product_image: product_image,
-                        product_price: product_price,
-                        product_qty: product_qty,
-                        _token: _token
-                    },
-                    success: function(data){
-                        swal({
-                                title: "Đã thêm sản phẩm vào giỏ hàng",
-                                text: "Bạn có thể mua tiếp hoặc tới giỏ hàng để tiến hành thanh toán",
-                                showCancelButton: true,
-                                cancelButtonText: "Xem tiếp",
-                                confirmButtonClass: "btn-success",
-                                confirmButtonText: "Đi đến giỏ hàng",
-                                closeOnConfirm: false,
-                            },
+            $.ajax({
+                url: "{{ route('home.addCartAjax') }}",
+                method: "POST",
+                data:{
+                    product_id: product_id,
+                    product_title: product_title,
+                    product_image: product_image,
+                    product_price: product_price,
+                    product_qty: product_qty,
+                    _token: _token
+                },
+                success: function(data){
+                    swal({
+                            title: "Đã thêm sản phẩm vào giỏ hàng",
+                            text: "Bạn có thể mua tiếp hoặc tới giỏ hàng để tiến hành thanh toán",
+                            showCancelButton: true,
+                            cancelButtonText: "Xem tiếp",
+                            confirmButtonClass: "btn-success",
+                            confirmButtonText: "Đi đến giỏ hàng",
+                            closeOnConfirm: false,
+                        },
 
-                            function(){
-                                window.location.href= "{{ route('home.showCartAjax') }}";
-                            }
-                        );
-                    }
-                });
+                        function(){
+                            window.location.href= "{{ route('home.showCartAjax') }}";
+                        }
+                    );
+                }
             });
+        });
     })
 </script>
 

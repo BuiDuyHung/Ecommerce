@@ -63,8 +63,16 @@
                                             <h2> {{ number_format($item->price) }} VNĐ</h2>
                                             <p> {{ $item->title }} </p>
                                             <input name="quantity" type="hidden" min="1" value="1" />
-                                            <input name="productId_hidden" type="hidden" value="{{ $item->id }}" />
-                                            <button type="submit" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm giỏ hàng</button>
+                                            {{-- <input name="productId_hidden" type="hidden" value="{{ $item->id }}" /> --}}
+                                            <input type="hidden" value="{{ $item->id }}" class="product_id_{{ $item->id }}">
+                                            <input type="hidden" value="{{ $item->title }}" class="product_title_{{ $item->id }}">
+                                            <input type="hidden" value="{{ $item->image }}" class="product_image_{{ $item->id }}">
+                                            <input type="hidden" value="{{ $item->price }}" class="product_price_{{ $item->id }}">
+                                            <input type="hidden" value="1" class="product_qty_{{ $item->id }}">
+
+                                            <button type="button" data-id_product="{{ $item->id }}" class="btn btn-default add-to-cart">
+                                                <i class="fa fa-shopping-cart"></i>Thêm giỏ hàng
+                                            </button>
                                         </div>
                                     </form>
                                 </div>

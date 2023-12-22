@@ -185,7 +185,7 @@ class CartController extends Controller
             Session::forget('coupon');
         }
 
-        return redirect()->route('home.showCartAjax')->with('msg', 'Xóa mã giảm giá thành công !');
+        return redirect()->route('home.checkout')->with('msg', 'Xóa mã giảm giá thành công !');
     }
 
     // Phiếu giảm giá

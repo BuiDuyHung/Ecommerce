@@ -157,7 +157,7 @@
                                         <input type="hidden" name="order_coupon" class="order_coupon" value="{{ $item['coupon_code'] }}">
                                     @endforeach
                                 @else
-                                    <input type="hidden" name="order_coupon" class="order_coupon" value="Không có mã giảm giá">
+                                    <input type="hidden" name="order_coupon" class="order_coupon" value="no">
                                 @endif
 
                                 <br><br>

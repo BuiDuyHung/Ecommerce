@@ -3,7 +3,7 @@
 @section('content')
 <div style="margin-bottom: 10px;">
     <a href="{{ route('admin.indexOrder') }}" class="btn btn-danger" >Quay Lại</a>
-    <a href="{{ route('admin.printOrder') }}" class="btn btn-success" >In đơn hàng</a>
+
 </div>
 
 <div class="table-agile-info">
@@ -157,12 +157,24 @@
                             </td>
                         </tr>
                 </tbody>
+
+                <a style="margin-bottom: 20px;" target="_blank" href="{{ route('admin.printOrder',$item->order_code) }}" class="btn btn-success" >In đơn hàng</a>
             </table>
 
 
         </div>
     </div>
 </div>
+
+
+
+    <table class="table table-striped b-t b-light">
+        <thead>
+            <tr>Tên khách hàng</tr>
+            <tr>Số điện thoại</tr>
+            <tr>Email</tr>
+        </thead>
+    </table>
 
 @endsection
 

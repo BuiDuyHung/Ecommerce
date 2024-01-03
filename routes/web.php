@@ -133,7 +133,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::get('/order', [ManaOrderController::class, 'index'])->name('indexOrder');
     Route::get('/view-order/{code}', [ManaOrderController::class, 'view_order'])->name('viewOrder');
     Route::get('/destroy-order/{id}', [ManaOrderController::class, 'destroy'])->name('destroyOrder');
-    Route::get('/print-order', [ManaOrderController::class, 'print_order'])->name('printOrder');
+    Route::get('/print-order/{checkout_code}', [ManaOrderController::class, 'print_order'])->name('printOrder');
 
     // Coupon
     Route::get('/coupon', [CouponController::class, 'index'])->name('indexCoupon');

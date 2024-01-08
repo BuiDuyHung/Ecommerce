@@ -12,6 +12,55 @@ use Illuminate\Support\Facades\DB;
 
 class CustomerController extends Controller
 {
+    // Trang cá nhân của khách hàng
+    public function index(Request $request){
+        // lấy tất cả các thể loại sản phẩm
+        $categories = Category::where('status', '1')->get();
+        // lấy tất cả các thương hiệu sản phẩm
+        $brands = Brand::where('status', '1')->get();
+
+        // Seo
+        $meta_desc = "Trang cá nhân khách hàng";
+        $meta_keywords = "Trang cá nhân khách hàng";
+        $meta_title = "E-Shopper";
+        $url_canonial = $request->url();
+
+        $customer_id = Session::get('customer_id');
+        $customer = Customer::where('id',$customer_id)->first();
+
+        return view('pages.customer.show', compact('customer', 'brands', 'categories', 'meta_desc', 'meta_keywords', 'meta_title', 'url_canonial'));
+    }
+
+    public function edit_customer(Request $request){
+        // lấy tất cả các thể loại sản phẩm
+        $categories = Category::where('status', '1')->get();
+        // lấy tất cả các thương hiệu sản phẩm
+        $brands = Brand::where('status', '1')->get();
+
+        // Seo
+        $meta_desc = "Trang cập nhật thông tin tài khoản khách hàng";
+        $meta_keywords = "Trang cập nhật thông tin tài khoản khách hàng";
+        $meta_title = "E-Shopper";
+        $url_canonial = $request->url();
+
+        $customer_id = Session::get('customer_id');
+        $customer = Customer::where('id',$customer_id)->first();
+
+        return view('pages.customer.edit', compact('customer', 'brands', 'categories', 'meta_desc', 'meta_keywords', 'meta_title', 'url_canonial'));
+
+    }
+
+    public function update_customer(Request $request){
+        $customer = new Customer();
+        $customer->name = $request->name_customer;
+        $customer->image = $request->image_customer;
+        $customer->email = $request->email_customer;
+        $customer->phone = $request->phone_customer;
+        $customer->save();
+
+        return redirect()->route('home.customerShow')->with('msg', 'Cập nhật thông tin tài khoản thành công !');
+    }
+
     // Hàm chuyển đến trang đăng nhập người dùng
     public function login(Request $request){
         // lấy tất cả các thể loại sản phẩm

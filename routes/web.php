@@ -1,13 +1,16 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CouponController;
+use App\Http\Controllers\Admin\CustomerController as AdminCustomerController;
 use App\Http\Controllers\Admin\ManaOrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\DeliveryController;
-
+use App\Http\Controllers\Admin\ManaCustomerController;
+use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CustomerController;
@@ -63,8 +66,10 @@ Route::prefix('/')->name('home.')->group(function(){
     Route::post('/calculate-feeship', [BillController::class, 'calculate_feeship'])->name('calculateFeeship');
     Route::get('/del-feeship', [BillController::class, 'del_feeship'])->name('delFeeship');
 
-    // User
-    Route::get('/trang-ca-nhan', [UserController::class, 'show'])->name('userShow');
+    // Customer
+    Route::get('/trang-ca-nhan', [CustomerController::class, 'index'])->name('customerShow');
+    Route::get('/cap-nhat-thong-tin-tai-khoan', [CustomerController::class, 'edit_customer'])->name('editCustomer');
+    Route::post('/cap-nhat-thong-tin-tai-khoan', [CustomerController::class, 'store_customer'])->name('storeCustomer');
 
     // Checkout
     // Route::get('/dang-nhap-thanh-toan', [CheckoutController::class, 'login_checkout'])->name('loginCheckout');
@@ -149,5 +154,17 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::post('/insert-delivery', [DeliveryController::class, 'insertDelivery'])->name('insertDelivery');
     Route::post('/load-feeship', [DeliveryController::class, 'loadFeeship'])->name('loadFeeship');
     Route::post('/update-feeship', [DeliveryController::class, 'updateFeeship'])->name('updateFeeship');
+
+    // Banner
+    Route::get('/slider', [SliderController::class, 'slider'])->name('slider');
+    Route::get('/create-slider', [SliderController::class, 'create'])->name('createSlider');
+    Route::post('/store-slider', [SliderController::class, 'store'])->name('storeSlider');
+    Route::get('/destroy-slider/{id}', [SliderController::class, 'destroy'])->name('destroySlider');
+
+    Route::get('active-slider/{id}', [SliderController::class, 'active'])->name('activeSlider');
+    Route::get('hidden-slider/{id}', [SliderController::class, 'hidden'])->name('hiddenSlider');
+
+    // Customer
+    Route::get('/customer', [ManaCustomerController::class, 'index'])->name('customer');
 
 });

@@ -9,7 +9,7 @@
             </header>
             <div class="panel-body">
                 <div class="position-center">
-                    <form role="form" action="{{ route('admin.storeSlider') }}" method="POST">
+                    <form role="form" action="{{ route('admin.storeSlider') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label>Tên slider</label>

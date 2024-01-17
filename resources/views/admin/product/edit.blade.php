@@ -30,6 +30,15 @@
                             @enderror
                         </div>
                         <div class="form-group">
+                            <label>Số lượng sản phẩm</label>
+                            <input type="number" name="product_quantity" class="form-control title" id="productQuantity" value="{{ $product->quantity }}">
+                            @error('product_quantity')
+                                <div class="invalid-feedback fix-noti">
+                                    {{$message}} !
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
                             <label>Hình ảnh sản phẩm</label>
                             <input type="file" name="product_image" class="form-control" id="productImage" >
                             <img src="{{ asset('uploads/'.$product->image) }}" width="100px">

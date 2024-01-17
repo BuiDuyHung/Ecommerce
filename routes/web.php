@@ -155,10 +155,12 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::post('/load-feeship', [DeliveryController::class, 'loadFeeship'])->name('loadFeeship');
     Route::post('/update-feeship', [DeliveryController::class, 'updateFeeship'])->name('updateFeeship');
 
-    // Banner
+    // Slider
     Route::get('/slider', [SliderController::class, 'slider'])->name('slider');
     Route::get('/create-slider', [SliderController::class, 'create'])->name('createSlider');
     Route::post('/store-slider', [SliderController::class, 'store'])->name('storeSlider');
+    Route::get('/edit-slider/{id}', [SliderController::class, 'edit'])->name('editSlider');
+    Route::post('/update-slider/{id}', [SliderController::class, 'update'])->name('updateSlider');
     Route::get('/destroy-slider/{id}', [SliderController::class, 'destroy'])->name('destroySlider');
 
     Route::get('active-slider/{id}', [SliderController::class, 'active'])->name('activeSlider');

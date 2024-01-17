@@ -12,6 +12,11 @@
                             <li data-target="#slider-carousel" data-slide-to="2"></li>
                         </ol>
 
+                        {{-- Cập nhật slider mới nhất --}}
+                        {{-- @foreach ($sliders as $item)
+
+                        @endforeach --}}
+
                         <div class="carousel-inner">
                             <div class="item active">
                                 <div class="row">

@@ -280,11 +280,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-image"></i>
-                        <span>Banner</span>
+                        <span>Slider</span>
                     </a>
                     <ul class="sub">
-						<li><a href="{{ route('admin.slider') }}">Danh sách banner</a></li>
-                        <li><a href="{{ route('admin.createSlider') }}">Thêm banner</a></li>
+						<li><a href="{{ route('admin.slider') }}">Danh sách slider</a></li>
+                        <li><a href="{{ route('admin.createSlider') }}">Thêm slider</a></li>
                     </ul>
                 </li>
 
@@ -603,6 +603,49 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             })
 
         })
+
+    // sweetalert delete
+    </script>
+        $(document).ready(function(){
+
+        })
+    <script>
+        $('.sweetalert-delete').click(function(e){
+            e.preventDefault();
+
+            alert("click");
+
+            var slider_id = $('.product_id_' + id).val();
+
+            // $.ajax({
+            //     url: "{{ route('home.addCartAjax') }}",
+            //     method: "POST",
+            //     data:{
+            //         product_id: product_id,
+            //         product_title: product_title,
+            //         product_image: product_image,
+            //         product_price: product_price,
+            //         product_qty: product_qty,
+            //         _token: _token
+            //     },
+            //     success: function(data){
+            //         swal({
+            //                 title: "Đã thêm sản phẩm vào giỏ hàng",
+            //                 text: "Bạn có thể mua tiếp hoặc tới giỏ hàng để tiến hành thanh toán",
+            //                 showCancelButton: true,
+            //                 cancelButtonText: "Xem tiếp",
+            //                 confirmButtonClass: "btn-success",
+            //                 confirmButtonText: "Đi đến giỏ hàng",
+            //                 closeOnConfirm: false,
+            //             },
+
+            //             function(){
+            //                 window.location.href= "{{ route('home.showCartAjax') }}";
+            //             }
+            //         );
+            //     }
+            // });
+        });
     </script>
 </body>
 </html>

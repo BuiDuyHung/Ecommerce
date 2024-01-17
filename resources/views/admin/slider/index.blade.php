@@ -61,11 +61,11 @@
                             <td>
                                 <span class="text-ellipsis">
                                     @if ($item->status == 0)
-                                        <a href="{{ route('admin.activeBrand', $item->id) }}">
+                                        <a href="{{ route('admin.activeSlider', $item->id) }}">
                                             <span class="fa-styling fa-solid fa-thumbs-down"></span>
                                         </a>
                                     @else
-                                        <a href="{{ route('admin.hiddenBrand', $item->id) }}">
+                                        <a href="{{ route('admin.hiddenSlider', $item->id) }}">
                                             <span class="fa-styling fa-solid fa-thumbs-up"></span>
                                         </a>
                                     @endif
@@ -73,7 +73,10 @@
                             </td>
 
                             <td>
-                                <a onclick="return confirm('Bạn có chắc chắn muốn xóa slider này?')" href="" class="active styling-edit" ui-toggle-class="">
+                                <a href="{{ route('admin.editSlider', $item->id) }}" class="active styling-edit" ui-toggle-class="">
+                                    <i class="fa fa-pencil-square-o text-success text-active"></i>
+                                </a>
+                                <a href="{{ route('admin.destroySlider', $item->id) }}" class="active styling-edit sweetalert-delete" ui-toggle-class="">
                                     <i class="fa fa-times text-danger text"></i>
                                 </a>
                             </td>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Brand;
 use App\Models\Product;
+use App\Models\slider;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -25,12 +26,16 @@ class HomeController extends Controller
         $categories = Category::where('status', '1')->get();
         // lấy tất cả các thương hiệu sản phẩm
         $brands = Brand::where('status', '1')->get();
+        // Lấy tất cả slider
+        $sliders = Slider::orderBy('id', 'DESC')->where('status', '1')->take(3)->get();
 
         // lấy 10 sản phẩm phẩm mới nhất
         $products = Product::where('status', '1')->orderby('id', 'desc')->limit(9)->get();
 
-        return view('pages.main', compact('categories', 'brands', 'products', 'meta_desc', 'meta_keywords', 'meta_title', 'url_canonial'));
+        return view('pages.main', compact('categories', 'brands', 'products', 'meta_desc', 'meta_keywords', 'meta_title', 'url_canonial', 'sliders'));
     }
+
+
 
     // Hiển thị danh sách các sản phẩm theo danh mục
     public function showCategory(Request $request, $id){

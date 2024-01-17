@@ -45,6 +45,7 @@
                     <th>Tên sản phẩm</th>
                     <th>Mô tả</th>
                     <th>Giá (VNĐ)</th>
+                    <th>Số lượng</th>
                     <th>Danh mục</th>
                     <th>Thương hiệu</th>
                     <th>Hiển thị</th>
@@ -63,6 +64,7 @@
                             </td>
                             <td> {{ $item->desc }} </td>
                             <td> {{ number_format($item->price) }} </td>
+                            <td> {{ $item->quantity }} </td>
                             <td> {{ $item->category->title }} </td>
                             <td> {{ $item->brand->title }} </td>
                             <td>

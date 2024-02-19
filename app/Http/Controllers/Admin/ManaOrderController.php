@@ -8,6 +8,9 @@ use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Customer;
 use App\Models\Shipping;
+use App\Models\Product;
+
+
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\PDF;
 use Illuminate\Support\Facades\App;
@@ -20,15 +23,15 @@ class ManaOrderController extends Controller
         return view('admin.order.index', compact('orders'));
     }
 
-
     // Hiển thị chi tiết thông tin đơn hàng
     public function view_order($code){
-        $order_detail = OrderDetail::where('order_code', $code)->get();
+        $order_detail = OrderDetail::where('order_code', $code)->with('product')->get();
         $orders = Order::where('code', $code)->get();
 
         foreach($orders as $item){
             $customer_id = $item->customer_id;
             $shipping_id = $item->shipping_id;
+            $order_status = $item->status;
         }
 
         $customer = Customer::where('id', $customer_id)->first();
@@ -48,7 +51,7 @@ class ManaOrderController extends Controller
             $coupon_value = 0;
         }
 
-        return view('admin.order.view', compact('order_detail', 'shipping', 'customer', 'coupon_condition', 'coupon_value'));
+        return view('admin.order.view', compact('order_detail','order_status', 'shipping', 'customer', 'coupon_condition', 'coupon_value'));
     }
 
     public function print_order($checkout_code){

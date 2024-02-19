@@ -3166,3 +3166,8 @@ a.active.styling-edit{
 .fix-noti{
     color: red;
 }
+
+.fix-selectProductDetail{
+    margin-left: 10px;
+    height: 33px;
+}

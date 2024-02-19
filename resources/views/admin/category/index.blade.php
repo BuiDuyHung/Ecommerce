@@ -82,6 +82,19 @@
 
                 </tbody>
             </table>
+
+            {{-- Import and export data by file exel --}}
+            <form action="{{ route('admin.importCsvCatefory') }}" method="POST" enctype="multipart/form-data" style="margin-top: 10px;">
+                @csrf
+                <input type="file" name="file" accept=".xlsx" > <br>
+                <input type="submit" value="Import file excel" name="import_csv" class="btn btn-warning">
+            </form>
+
+            <form action="{{ route('admin.exportCsvCategory') }}" method="POST" style="margin-top: 10px;">
+                @csrf
+                <input type="submit" value="Export file excel" name="export_csv" class="btn btn-success">
+            </form>
+
         </div>
         <footer class="panel-footer">
             <div class="row">

@@ -99,6 +99,7 @@
                         <th>Mã giảm giá</th>
                         <th>Phí ship</th>
                         <th>Số lượng</th>
+                        <th>Số lượng còn lại trong kho</th>
                         <th>Giá</th>
                         <th>Tổng tiền</th>
                         <th style="width:30px;"></th>
@@ -106,12 +107,16 @@
                 </thead>
                 <tbody>
                     @php
+                        session_start();
                         $total = 0;
                     @endphp
                     @foreach ($order_detail as $item)
                         @php
                             $subtotal = $item->product_sale_quantity*$item->product_price;
                             $total+=$subtotal;
+
+                            $quantityAfterSale =  $item->product->quantity - $item->product_sale_quantity;
+                            Session::put('quantityAfterSale', $quantityAfterSale);
                         @endphp
                         <tr>
                             <td>
@@ -127,11 +132,24 @@
                             </td>
                             <td> {{ number_format($item->product_feeship,'0',',','.') }} VNĐ</td>
                             <td> {{ $item->product_sale_quantity }} </td>
+                            <td> {{ $quantityAfterSale }} </td>
                             <td> {{ number_format($item->product_price,'0',',','.') }} VNĐ</td>
 
                             <td> {{ number_format($item->product_sale_quantity*$item->product_price,'0',',','.') }} VNĐ</td>
                         </tr>
                     @endforeach
+                        <tr>
+                            <a style="margin-bottom: 20px; margin-top: 18px; " target="_blank" href="{{ route('admin.printOrder',$item->order_code) }}" class="btn btn-success" >In đơn hàng</a>
+                        </tr>
+                        <tr>
+                            <select class="fix-selectProductDetail">
+                                @if ($order_status == '1')
+                                    <option>Đang xử lý</option>
+                                @else
+                                    <option>Đã giao hàng</option>
+                                @endif
+                            </select>
+                        </tr>
                         <tr>
                             <td colspan="3">
                                 @php
@@ -158,23 +176,13 @@
                         </tr>
                 </tbody>
 
-                <a style="margin-bottom: 20px;" target="_blank" href="{{ route('admin.printOrder',$item->order_code) }}" class="btn btn-success" >In đơn hàng</a>
+
             </table>
 
 
         </div>
     </div>
 </div>
-
-
-
-    <table class="table table-striped b-t b-light">
-        <thead>
-            <tr>Tên khách hàng</tr>
-            <tr>Số điện thoại</tr>
-            <tr>Email</tr>
-        </thead>
-    </table>
 
 @endsection
 

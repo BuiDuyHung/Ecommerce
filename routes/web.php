@@ -112,6 +112,9 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::get('active-category/{id}', [CategoryController::class, 'active'])->name('activeCategory');
     Route::get('hidden-category/{id}', [CategoryController::class, 'hidden'])->name('hiddenCategory');
 
+    Route::post('/export-csv', [CategoryController::class, 'export_csv'])->name('exportCsvCategory');
+    Route::post('/import-csv', [CategoryController::class, 'import_csv'])->name('importCsvCatefory');
+
     // brand
     Route::get('/brand', [BrandController::class, 'index'])->name('indexBrand');
     Route::get('/create-brand', [BrandController::class, 'create'])->name('createBrand');

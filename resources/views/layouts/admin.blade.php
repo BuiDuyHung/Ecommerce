@@ -606,9 +606,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     // sweetalert delete
     </script>
-        $(document).ready(function(){
 
-        })
     <script>
         $('.sweetalert-delete').click(function(e){
             e.preventDefault();

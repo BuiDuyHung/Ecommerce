@@ -7,6 +7,10 @@ use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ExcelExports;
+use App\Imports\ExcelImports;
+
 class CategoryController extends Controller
 {
     /**
@@ -102,5 +106,21 @@ class CategoryController extends Controller
         Category::where('id', $id)->update(['status' => '1']);
 
         return redirect()->route('admin.indexCategory')->with('msg', 'Kích hoạt danh mục sản phẩm thành công !');
+    }
+
+    /**
+     * Import data csv.
+     */
+    public function import_csv(Request $request){
+        $path = $request->file('file')->getRealPath();
+        Excel::import(new ExcelImports, $path);
+        return redirect()->route('admin.indexCategory')->with('msg', 'Thêm file data excel thể loại sản phẩm thành công !');
+    }
+
+    /**
+     * Export data csv.
+     */
+    public function export_csv(){
+        return Excel::download(new ExcelExports, 'categoryProduct.xlsx');
     }
 }

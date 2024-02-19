@@ -7,7 +7,8 @@ use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Brand;
-use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 
@@ -101,7 +102,13 @@ class ProductController extends Controller
 
         $product->title = $request->product_title;
         $product->slug = $request->product_slug;
-        $product->quantity = $request->product_quantity;
+
+        if(Session::get('quantityAfterSale')){
+            $quantityAfterSale = Session::get('quantityAfterSale');
+            $product->quantity = $quantityAfterSale;
+        }else{
+            $product->quantity = $request->product_quantity;
+        }
         $product->desc = $request->product_desc;
         $product->content = $request->product_content;
         $product->price = $request->product_price;

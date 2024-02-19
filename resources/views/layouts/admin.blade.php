@@ -503,6 +503,43 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         });
     </script>
 
+    {{-- update info order --}}
+    <script>
+        $('.order_details').change(function() {
+            var order_status = $(this).val();
+            var order_id = $(this).children(":selected").attr("id");
+            var _token = $('input[name="_token"]').val();
+
+            // quantity sale
+            var quantity = [];
+            $("input[name='product_sales_quantity']").each(function(){
+                quantity.push($(this).val());
+            });
+
+            // product id
+            var order_product_id = [];
+            $("input[name='order_product_id']").each(function() {
+                order_product_id.push($(this).val());
+            });
+
+            $.ajax({
+                url: "{{ route('admin.updateOrderQuantity') }}",
+                method: "POST",
+                data: {
+                    order_status: order_status,
+                    order_id: order_id,
+                    quantity: quantity,
+                    order_product_id: order_product_id,
+                    _token: _token
+                },
+                success: function (data) {
+                    alert('Cập nhật số lượng thành công !');
+                }
+            });
+
+        });
+    </script>
+
     <script>
         $(document).ready(function(){
             fetch_delivery();

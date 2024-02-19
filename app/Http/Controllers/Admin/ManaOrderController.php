@@ -51,9 +51,16 @@ class ManaOrderController extends Controller
             $coupon_value = 0;
         }
 
-        return view('admin.order.view', compact('order_detail','order_status', 'shipping', 'customer', 'coupon_condition', 'coupon_value'));
+        return view('admin.order.view', compact('order_detail','order_status', 'shipping', 'customer', 'coupon_condition', 'coupon_value', 'orders'));
     }
 
+    // Update order quantity
+    public function update_order_quantity(Request $request){
+        $data = $request->all();
+
+    }
+
+    // In thông tin đơn hàng
     public function print_order($checkout_code){
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadHTML($this->print_order_convert($checkout_code));

@@ -98,7 +98,7 @@
                         <th>Tên sản phẩm</th>
                         <th>Mã giảm giá</th>
                         <th>Phí ship</th>
-                        <th>Số lượng</th>
+                        <th>Số lượng bán</th>
                         <th>Số lượng còn lại trong kho</th>
                         <th>Giá</th>
                         <th>Tổng tiền</th>
@@ -110,7 +110,7 @@
                         session_start();
                         $total = 0;
                     @endphp
-                    @foreach ($order_detail as $item)
+                    @foreach ($order_detail as $key => $item)
                         @php
                             $subtotal = $item->product_sale_quantity*$item->product_price;
                             $total+=$subtotal;
@@ -131,8 +131,15 @@
                                 @endif
                             </td>
                             <td> {{ number_format($item->product_feeship,'0',',','.') }} VNĐ</td>
-                            <td> {{ $item->product_sale_quantity }} </td>
+
+                            <td>
+                                <input type="number" min="1" value="{{ $item->product_sale_quantity }}" name="product_sales_quantity">
+                                <input type="hidden" name="order_product_id" class="order_product_id" value="{{ $item->product_id }}">
+                                <button class="btn btn-default" name="update_quantity">Cập nhật</button>
+                            </td>
+
                             <td> {{ $quantityAfterSale }} </td>
+
                             <td> {{ number_format($item->product_price,'0',',','.') }} VNĐ</td>
 
                             <td> {{ number_format($item->product_sale_quantity*$item->product_price,'0',',','.') }} VNĐ</td>
@@ -142,13 +149,41 @@
                             <a style="margin-bottom: 20px; margin-top: 18px; " target="_blank" href="{{ route('admin.printOrder',$item->order_code) }}" class="btn btn-success" >In đơn hàng</a>
                         </tr>
                         <tr>
-                            <select class="fix-selectProductDetail">
-                                @if ($order_status == '1')
-                                    <option>Đang xử lý</option>
+                            @foreach ($orders as $key => $or)
+                                @if ($or->status == 1)
+                                    <form action="">
+                                        @csrf
+                                        <select class="fix-selectProductDetail order_details">
+                                            <option value="">---Chọn hình thức đơn hàng---</option>
+                                            <option id="{{ $or->id }}" value="1">Chưa xử lý</option>
+                                            <option id="{{ $or->id }}" value="2">Đã xử lý - Đã giao hàng</option>
+                                            <option id="{{ $or->id }}" value="3">Hủy đơn hàng - tạm giữ</option>
+                                        </select>
+                                    </form>
+                                @elseif ($or->status == 2)
+                                    <form action="">
+                                        @csrf
+                                        <select class="fix-selectProductDetail order_details">
+                                            <option value="">---Chọn hình thức đơn hàng---</option>
+                                            <option id="{{ $or->id }}" value="1">Chưa xử lý</option>
+                                            <option id="{{ $or->id }}" value="2">Đã xử lý - Đã giao hàng</option>
+                                            <option id="{{ $or->id }}" value="3">Hủy đơn hàng - tạm giữ</option>
+                                        </select>
+                                    </form>
                                 @else
-                                    <option>Đã giao hàng</option>
+                                <form action="">
+                                    @csrf
+                                    <select class="fix-selectProductDetail order_details">
+                                        <option value="">---Chọn hình thức đơn hàng---</option>
+                                        <option id="{{ $or->id }}" value="1">Chưa xử lý</option>
+                                        <option id="{{ $or->id }}" value="2">Đã xử lý - Đã giao hàng</option>
+                                        <option id="{{ $or->id }}" value="3">Hủy đơn hàng - tạm giữ</option>
+                                    </select>
+                                </form>
                                 @endif
-                            </select>
+
+                            @endforeach
+
                         </tr>
                         <tr>
                             <td colspan="3">

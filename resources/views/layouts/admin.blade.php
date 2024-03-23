@@ -503,6 +503,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         });
     </script>
 
+    {{-- update order quantity sale --}}
+    <script>
+        $('.update_quantity_order').click(function(){
+            var order_product_id = $(this).data('product_id');
+            var order_qty = $('.order_qty_'+order_product_id).val();
+            var order_code = $('.order_code').val();
+            var _token = $('input[name="_token"]').val();
+
+            $.ajax({
+                url: "{{ route('admin.updateQuantitySale') }}",
+                method: "POST",
+                data: {
+                    order_code: order_code,
+                    order_qty: order_qty,
+                    order_product_id: order_product_id,
+                    _token: _token
+                },
+                success: function (data) {
+                    alert('Cập nhật số lượng bán thành công !');
+                    location.reload();
+                }
+            });
+        })
+    </script>
+
     {{-- update info order --}}
     <script>
         $('.order_details').change(function() {
@@ -522,6 +547,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 order_product_id.push($(this).val());
             });
 
+            for(i=0; i<order_product_id.length; i++) {
+                // số lượng khách đặt
+                var order_qty = $('.order_qty_'+order_product_id[i]).val();
+                // số lượng tồn kho
+                var order_qty_storage = $('.order_qty_storage_'+order_product_id[i]).val();
+
+                if(partInt(order_qty) > partInt(order_qty_storage)){
+
+                }
+            }
+
             $.ajax({
                 url: "{{ route('admin.updateOrderQuantity') }}",
                 method: "POST",
@@ -533,7 +569,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     _token: _token
                 },
                 success: function (data) {
-                    alert('Cập nhật số lượng thành công !');
+                    alert('Thay đổi tình trạng đơn hàng thành công !');
+                    location.reload();
                 }
             });
 

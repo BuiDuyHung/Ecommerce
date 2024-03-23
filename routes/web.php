@@ -143,6 +143,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::get('/destroy-order/{id}', [ManaOrderController::class, 'destroy'])->name('destroyOrder');
     Route::get('/print-order/{checkout_code}', [ManaOrderController::class, 'print_order'])->name('printOrder');
 
+    Route::post('/update-quantity-sale', [ManaOrderController::class, 'update_quantity_sale'])->name('updateQuantitySale');
     Route::post('/update-order-quantity', [ManaOrderController::class, 'update_order_quantity'])->name('updateOrderQuantity');
 
     // Coupon

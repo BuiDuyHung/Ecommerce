@@ -54,9 +54,38 @@ class ManaOrderController extends Controller
         return view('admin.order.view', compact('order_detail','order_status', 'shipping', 'customer', 'coupon_condition', 'coupon_value', 'orders'));
     }
 
-    // Update order quantity
+    // Cập nhật số lượng bán của sản phẩm
+    public function update_quantity_sale(Request $request){
+        $data = $request->all();
+
+        $order_detail = OrderDetail::where('product_id', $data['order_product_id'])->where('order_code', $data['order_code'])->first();
+        $order_detail->product_sale_quantity = $data['order_qty'];
+        $order_detail->save();
+    }
+
+    // Thay đổi tình trạng đơn hàng
     public function update_order_quantity(Request $request){
         $data = $request->all();
+
+        $order = Order::find($data['order_id']);
+        $order->status = $data['order_status'];
+        $order->save();
+        if($order->status == 2){
+            foreach($data['order_product_id'] as $key => $product_id){
+                $product = Product::find($product_id);
+                $product_quantity = $product->quantity;
+                $product_sold = $product->sold;
+
+                foreach($data['quantity'] as $key2 => $qty){
+                    if($key == $key2){
+                        $product_remain = $product_quantity - $qty;
+                        $product->quantity = $product_remain;
+                        $product->sold = $product_sold + $qty;
+                        $product->save();
+                    }
+                }
+            }
+        }
 
     }
 

@@ -118,6 +118,7 @@
                             $quantityAfterSale =  $item->product->quantity - $item->product_sale_quantity;
                             Session::put('quantityAfterSale', $quantityAfterSale);
                         @endphp
+                        <tr class="qty_{{ $item->product_id }}"></tr>
                         <tr>
                             <td>
                                 <label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label>
@@ -133,9 +134,13 @@
                             <td> {{ number_format($item->product_feeship,'0',',','.') }} VNĐ</td>
 
                             <td>
-                                <input type="number" min="1" value="{{ $item->product_sale_quantity }}" name="product_sales_quantity">
+                                <input type="number" min="1" class="order_qty_{{ $item->product_id }}" value="{{ $item->product_sale_quantity }}" name="product_sales_quantity">
+
+                                <input type="hidden" name="order_qty_storage" class="order_qty_storage_{{ $item->product_id }}" value="{{ $item->product->quantity }}">
+                                <input type="hidden" name="order_code" class="order_code" value="{{ $item->order_code }}">
                                 <input type="hidden" name="order_product_id" class="order_product_id" value="{{ $item->product_id }}">
-                                <button class="btn btn-default" name="update_quantity">Cập nhật</button>
+
+                                <button class="btn btn-default update_quantity_order" data-product_id="{{ $item->product_id }}" name="update_quantity_order">Cập nhật</button>
                             </td>
 
                             <td> {{ $quantityAfterSale }} </td>
@@ -155,7 +160,7 @@
                                         @csrf
                                         <select class="fix-selectProductDetail order_details">
                                             <option value="">---Chọn hình thức đơn hàng---</option>
-                                            <option id="{{ $or->id }}" value="1">Chưa xử lý</option>
+                                            <option id="{{ $or->id }}" value="1" selected>Chưa xử lý</option>
                                             <option id="{{ $or->id }}" value="2">Đã xử lý - Đã giao hàng</option>
                                             <option id="{{ $or->id }}" value="3">Hủy đơn hàng - tạm giữ</option>
                                         </select>
@@ -166,7 +171,7 @@
                                         <select class="fix-selectProductDetail order_details">
                                             <option value="">---Chọn hình thức đơn hàng---</option>
                                             <option id="{{ $or->id }}" value="1">Chưa xử lý</option>
-                                            <option id="{{ $or->id }}" value="2">Đã xử lý - Đã giao hàng</option>
+                                            <option id="{{ $or->id }}" value="2" selected>Đã xử lý - Đã giao hàng</option>
                                             <option id="{{ $or->id }}" value="3">Hủy đơn hàng - tạm giữ</option>
                                         </select>
                                     </form>
@@ -177,7 +182,7 @@
                                         <option value="">---Chọn hình thức đơn hàng---</option>
                                         <option id="{{ $or->id }}" value="1">Chưa xử lý</option>
                                         <option id="{{ $or->id }}" value="2">Đã xử lý - Đã giao hàng</option>
-                                        <option id="{{ $or->id }}" value="3">Hủy đơn hàng - tạm giữ</option>
+                                        <option id="{{ $or->id }}" value="3" selected>Hủy đơn hàng - tạm giữ</option>
                                     </select>
                                 </form>
                                 @endif
